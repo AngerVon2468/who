@@ -4,6 +4,8 @@ import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.*;
 
+import wiiu.mavity.who.entity.WhoEntities;
+
 public class Who implements ModInitializer {
 
 	public static final String NAME = "Who";
@@ -15,6 +17,7 @@ public class Who implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		Who.LOGGER.info("Hello Fabric world!");
+		Who.LOGGER.info("Who has started up!");
+		WhoEntities.registerWhoEntities();
 	}
 }
