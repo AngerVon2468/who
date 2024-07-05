@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "who",
+	"version": "${version}",
+	"name": "Who",
+	"description": "Doctor Who mod :OOOOO",
+	"authors": [
+		"Mavity The Madity"
+	],
+	"contact": {
+		"homepage": "https://github.com/AngerVon2468/who",
+		"issues": "https://github.com/AngerVon2468/who/issues",
+		"sources": "https://github.com/AngerVon2468/who"
+	},
+	"license": "Unlicense",
+	"icon": "assets/who/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"wiiu.mavity.who.Who"
+		]
+	},
+	"mixins": [
+		"who.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
