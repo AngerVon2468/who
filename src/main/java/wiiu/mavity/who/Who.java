@@ -7,6 +7,7 @@ import org.slf4j.*;
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.item.WhoItems;
 
+// TODO: Davros chair && || Dalek cosplay of some sort
 public class Who implements ModInitializer {
 
 	public static final String NAME = "Who";
