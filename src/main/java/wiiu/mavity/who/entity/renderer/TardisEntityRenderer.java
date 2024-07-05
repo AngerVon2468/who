@@ -24,6 +24,7 @@ public class TardisEntityRenderer extends EntityRenderer<TardisEntity> {
         this.entityModel = new TardisEntityModel<>(ctx.getPart(TardisEntityModel.LAYER_LOCATION));
     }
 
+    // TODO: Use tardis.getHorizontalFacing to change the model rotation properly.
     @Override
     public void render(@NotNull TardisEntity tardis, float yaw, float tickDelta, @NotNull MatrixStack matrices, @NotNull VertexConsumerProvider vertexConsumers, int light) {
         super.render(tardis, yaw, tickDelta, matrices, vertexConsumers, light);
