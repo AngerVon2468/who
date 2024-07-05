@@ -3,8 +3,13 @@ package wiiu.mavity.who.entity.entitytype;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.*;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+
+import wiiu.mavity.who.Who;
 
 public class TardisEntity extends Entity {
 
@@ -39,6 +44,17 @@ public class TardisEntity extends Entity {
 
     @Override
     public ActionResult interact(PlayerEntity player, Hand hand) {
-        return ActionResult.SUCCESS;
+        if (player instanceof ServerPlayerEntity playerEntity) {
+
+            RegistryKey<World> registryKey = RegistryKey.of(RegistryKeys.WORLD, new Identifier(Who.MOD_ID, "tardis_dim"));
+            ServerWorld serverWorld = player.getServer().getWorld(registryKey);
+            playerEntity.teleport(serverWorld, 0, 100, 0, player.getYaw(), player.getPitch());
+            return ActionResult.SUCCESS;
+
+        } else {
+
+            return ActionResult.FAIL;
+
+        }
     }
 }
