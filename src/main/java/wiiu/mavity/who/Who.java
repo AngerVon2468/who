@@ -10,7 +10,7 @@ public class Who implements ModInitializer {
 
 	public static final String MOD_ID = "who";
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(Who.MOD_ID);
+    public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
 
 	@Override
 	public void onInitialize() {

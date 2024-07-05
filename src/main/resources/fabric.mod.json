@@ -3,7 +3,7 @@
 	"id": "who",
 	"version": "${version}",
 	"name": "Who",
-	"description": "Doctor Who mod :OOOOO",
+	"description": "Doctor Who mod!",
 	"authors": [
 		"Mavity The Madity"
 	],
@@ -18,18 +18,18 @@
 	"entrypoints": {
 		"main": [
 			"wiiu.mavity.who.Who"
+		],
+		"client": [
+			"wiiu.mavity.who.WhoClient"
 		]
 	},
 	"mixins": [
 		"who.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.15.11",
+		"fabricloader": "*",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
