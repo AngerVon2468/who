@@ -6,6 +6,7 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.RotationAxis;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -26,6 +27,7 @@ public class TardisEntityRenderer extends EntityRenderer<TardisEntity> {
     @Override
     public void render(@NotNull TardisEntity tardis, float yaw, float tickDelta, @NotNull MatrixStack matrices, @NotNull VertexConsumerProvider vertexConsumers, int light) {
         super.render(tardis, yaw, tickDelta, matrices, vertexConsumers, light);
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(tardis.getYaw()));
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.entityModel.getLayer(getTexture(tardis)));
         this.entityModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
     }
