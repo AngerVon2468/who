@@ -1,11 +1,7 @@
 package wiiu.mavity.who.util.data;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.jetbrains.annotations.Nullable;
 import wiiu.mavity.who.Who;
 
 import java.io.*;
@@ -32,20 +28,17 @@ public class TardisDataReaderAndWriter {
         } catch (IOException ioException) {
             Who.LOGGER.info(ioException.toString());
         }
-        /*
         try {
             FileWriter dungeonUtilsConfigWriter = new FileWriter(tardisDataFile);
 
             dungeonUtilsConfigWriter.write("{" + System.getProperty("line.separator"));
-            dungeonUtilsConfigWriter.write("    \"tardisIds\": " + 0 + System.getProperty("line.separator"));
+            dungeonUtilsConfigWriter.write("    \"tardisIds\": " + tardisIds() + System.getProperty("line.separator"));
             dungeonUtilsConfigWriter.write("}");
             dungeonUtilsConfigWriter.close();
         } catch (IOException ioException) {
             Who.LOGGER.info(ioException.toString());
         }
 
-        System.out.println(tardisIds());
-        */
     }
 
     public static BufferedReader bufferedReader;
@@ -61,15 +54,26 @@ public class TardisDataReaderAndWriter {
 
     }
 
-    public static Object json = gson.fromJson(bufferedReader, Object.class);
-
+    public static Object json;
     public static JsonParser parser = new JsonParser();
-    public static JsonElement jsonTree = parser.parse(json.toString());
+    public static JsonElement jsonTree;
+
+    static {
+
+        if (tardisDataFile.exists()) {
+
+            json = gson.fromJson(bufferedReader, Object.class);
+            jsonTree = parser.parse(json.toString());
+
+        }
+
+    }
+
     public static JsonObject jsonObject;
 
     static {
 
-        if (jsonTree.isJsonObject()) {
+        if (jsonTree != null && jsonTree.isJsonObject()) {
             jsonObject = jsonTree.getAsJsonObject();
         }
 
@@ -77,10 +81,11 @@ public class TardisDataReaderAndWriter {
 
     public static int tardisIds() {
 
-        return jsonObject.get("tardisIds").getAsInt();
+        return jsonTree == null ? 0 : jsonObject.get("tardisIds").getAsInt();
     }
 
     public static void main(String[] args) {
+        tardisData();
         System.out.println(tardisIds());
     }
 }
