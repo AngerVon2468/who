@@ -1,11 +1,7 @@
 package wiiu.mavity.who.item.itemtype;
 
-import com.faux.customentitydata.api.CustomDataHelper;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
