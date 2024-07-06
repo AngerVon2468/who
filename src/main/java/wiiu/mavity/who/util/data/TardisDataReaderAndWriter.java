@@ -14,7 +14,7 @@ public class TardisDataReaderAndWriter {
 
     public static File tardisDataFolder = new File(tardisDataPath);
 
-    public static void tardisData() {
+    public static void genTardisDataFiles() {
 
         if (!tardisDataFolder.exists()){
             tardisDataFolder.mkdirs();
@@ -55,7 +55,6 @@ public class TardisDataReaderAndWriter {
     }
 
     public static Object json;
-    public static JsonParser parser = new JsonParser();
     public static JsonElement jsonTree;
 
     static {
@@ -63,7 +62,7 @@ public class TardisDataReaderAndWriter {
         if (tardisDataFile.exists()) {
 
             json = gson.fromJson(bufferedReader, Object.class);
-            jsonTree = parser.parse(json.toString());
+            jsonTree = JsonParser.parseString(json.toString());
 
         }
 
@@ -82,10 +81,5 @@ public class TardisDataReaderAndWriter {
     public static int tardisIds() {
 
         return jsonTree == null ? 0 : jsonObject.get("tardisIds").getAsInt();
-    }
-
-    public static void main(String[] args) {
-        tardisData();
-        System.out.println(tardisIds());
     }
 }
