@@ -18,6 +18,11 @@ public class TardisItem extends Item {
     }
 
     @Override
+    public void onCraft(ItemStack stack, World world, PlayerEntity player) {
+
+    }
+
+    @Override
     public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
         World world = context.getWorld();
         PlayerEntity user = context.getPlayer();
