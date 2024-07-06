@@ -1,7 +1,6 @@
 package wiiu.mavity.who.entity.entitytype;
 
 import net.minecraft.entity.*;
-import net.minecraft.entity.data.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -18,15 +17,12 @@ import wiiu.mavity.who.util.DimensionalUtil;
 
 public class TardisEntity extends Entity {
 
-    private static final TrackedData<Integer> TARDIS_ID = DataTracker.registerData(TardisEntity.class, TrackedDataHandlerRegistry.INTEGER);
-
     public TardisEntity(EntityType<?> type, World world) {
         super(type, world);
     }
 
     @Override
     protected void initDataTracker() {
-        this.getDataTracker().startTracking(TARDIS_ID, 0);
     }
 
     @Override
@@ -49,17 +45,9 @@ public class TardisEntity extends Entity {
         return true;
     }
 
-    public int getTardisId() {
-        return this.getDataTracker().get(TARDIS_ID);
-    }
-
-    public void setTardisId(int value) {
-        this.getDataTracker().set(TARDIS_ID, value);
-    }
-
     @Override
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
-        player.sendMessage(Text.literal("Tardis id is: " + this.getTardisId()));
+        player.sendMessage(Text.literal("Tardis id is: " + 0));
         ItemStack stack = player.getStackInHand(hand);
         if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 
@@ -69,7 +57,7 @@ public class TardisEntity extends Entity {
         } else if (stack.isOf(WhoItems.TARDIS)) {
 
             NbtCompound nbt = new NbtCompound();
-            nbt.putInt("who.tardis.id", this.getTardisId());
+            nbt.putInt("who.tardis.id", 0);
             stack.setNbt(nbt);
             return ActionResult.SUCCESS;
 
