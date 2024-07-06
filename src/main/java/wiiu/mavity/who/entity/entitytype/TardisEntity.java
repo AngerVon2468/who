@@ -1,6 +1,8 @@
 package wiiu.mavity.who.entity.entitytype;
 
-import com.faux.customentitydata.api.*;
+import com.mojang.serialization.Codec;
+
+import net.fabricmc.fabric.api.attachment.v1.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,19 +36,13 @@ public class TardisEntity extends Entity {
     }
 
     @Override
+    @SuppressWarnings("all")
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {
         super.onSpawnPacket(packet);
-        NbtCompound tardisId = NbtUtil.createNbt("who.tardis.id", random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
-        NbtCompound existingTardisId = CustomDataHelper.getCustomData(this);
-        if (!existingTardisId.contains("who.tardis.id")) {
-
-            CustomDataHelper.setCustomData(this, tardisId);
-
-        } else {
-
-            CustomDataHelper.setCustomData(this, existingTardisId);
-
-        }
+        boolean hasAttachment = this.hasAttached(TardisDataAttachments.TARDIS_ID); // false
+        int tardisId = this.getAttachedOrCreate(TardisDataAttachments.TARDIS_ID); // 0, auto-initialized !
+        hasAttachment = this.hasAttached(TardisDataAttachments.TARDIS_ID); // now true
+        this.modifyAttached(TardisDataAttachments.TARDIS_ID, tardis_id -> random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE)); // Change Tardis ID
     }
 
     @Override
@@ -69,24 +65,44 @@ public class TardisEntity extends Entity {
 
     @Override
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
-        NbtCompound tardisIdNbt = CustomDataHelper.getCustomData(this);
-        int tardisId = tardisIdNbt.getInt("who.tardis.id");
-        player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + tardisId));
-        ItemStack stack = player.getStackInHand(hand);
-        if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 
-            DimensionalUtil.changePlayerEntityDimension(serverPlayer, Who.MOD_ID, "tardis_dim");
-            return ActionResult.SUCCESS;
+        if (this.hasAttached(TardisDataAttachments.TARDIS_ID)) {
 
-        } else if (stack.isOf(WhoItems.TARDIS)) {
+            int tardisId = this.getAttached(TardisDataAttachments.TARDIS_ID).intValue();
+            player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + tardisId));
+            ItemStack stack = player.getStackInHand(hand);
+            if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 
-            NbtUtil.setNbt(stack, "who.tardis.id", tardisId);
-            return ActionResult.SUCCESS;
+                DimensionalUtil.changePlayerEntityDimension(serverPlayer, Who.MOD_ID, "tardis_dim");
+                return ActionResult.SUCCESS;
+
+            } else if (stack.isOf(WhoItems.TARDIS)) {
+
+                NbtUtil.setNbt(stack, "who.tardis.id", tardisId);
+                return ActionResult.SUCCESS;
+
+            } else {
+
+                return ActionResult.FAIL;
+
+            }
 
         } else {
 
             return ActionResult.FAIL;
 
         }
+
+    }
+
+    @SuppressWarnings("all")
+    public static class TardisDataAttachments {
+
+        public static final AttachmentType<Integer> TARDIS_ID = AttachmentRegistry.<Integer>builder() // Builder for finer control
+                .persistent(Codec.INT) // required codec for persistence
+                .copyOnDeath() // will persist over entity death and respawn
+                .initializer(() -> 0) // default value
+                .buildAndRegister(new Identifier(Who.MOD_ID, "tardis_id")
+        );
     }
 }
