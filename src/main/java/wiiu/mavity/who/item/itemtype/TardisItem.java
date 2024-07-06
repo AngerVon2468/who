@@ -1,7 +1,10 @@
 package wiiu.mavity.who.item.itemtype;
 
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -11,7 +14,12 @@ import org.jetbrains.annotations.NotNull;
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.entitytype.TardisEntity;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 public class TardisItem extends Item {
+
+    public static final Predicate<LivingEntity> TARDIS_PREDICATE = entity -> entity.isAlive() && entity.isAttackable();
 
     public TardisItem(Settings settings) {
         super(settings);
@@ -25,27 +33,35 @@ public class TardisItem extends Item {
     @Override
     public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
         World world = context.getWorld();
-        PlayerEntity user = context.getPlayer();
+        PlayerEntity player = context.getPlayer();
 
         TardisEntity tardisEntity = WhoEntities.TARDIS.create(world);
-        if (user.getHorizontalFacing() == Direction.NORTH) {
+        final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setBaseMaxDistance(Double.MAX_VALUE).setPredicate(TARDIS_PREDICATE);
+        List<TardisEntity> tardises = world.getTargets(TardisEntity.class, TARGET_PREDICATE, tardisEntity, tardisEntity.getBoundingBox().expand(Double.MAX_VALUE)).stream().toList();
+        for (TardisEntity tardis : tardises) {
+            tardisEntity.setTardises(tardisEntity.getTardises() + 1);
+            tardisEntity.setTardisId(tardisEntity.getTardises() + 1);
+        }
+        if (player.getHorizontalFacing() == Direction.NORTH) {
 
-            tardisEntity.setPosition(user.getX(), user.getY(), user.getZ() - 1);
+            tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() - 1);
 
-        } else if (user.getHorizontalFacing() == Direction.SOUTH) {
+        } else if (player.getHorizontalFacing() == Direction.SOUTH) {
 
-            tardisEntity.setPosition(user.getX(), user.getY(), user.getZ() + 1);
+            tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() + 1);
 
-        } else if (user.getHorizontalFacing() == Direction.EAST) {
+        } else if (player.getHorizontalFacing() == Direction.EAST) {
 
-            tardisEntity.setPosition(user.getX() + 1, user.getY(), user.getZ());
+            tardisEntity.setPosition(player.getX() + 1, player.getY(), player.getZ());
 
-        } else if (user.getHorizontalFacing() == Direction.WEST) {
+        } else if (player.getHorizontalFacing() == Direction.WEST) {
 
-            tardisEntity.setPosition(user.getX() - 1, user.getY(), user.getZ());
+            tardisEntity.setPosition(player.getX() - 1, player.getY(), player.getZ());
 
         }
-        tardisEntity.setYaw(-user.getHeadYaw());
+        tardisEntity.setYaw(-player.getHeadYaw());
+        player.sendMessage(Text.literal("Tardis id: " + tardisEntity.getTardisId()));
+        player.sendMessage(Text.literal("Tardises: " + tardisEntity.getTardises()));
         world.spawnEntity(tardisEntity);
 
         return ActionResult.CONSUME;
