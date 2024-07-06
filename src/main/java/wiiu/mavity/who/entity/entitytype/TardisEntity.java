@@ -21,7 +21,7 @@ import wiiu.mavity.who.util.data.NbtUtil;
 
 import java.util.Random;
 
-public class TardisEntity extends Entity implements ICustomDataHolder {
+public class TardisEntity extends Entity {
 
     Random random = new Random();
 
@@ -51,14 +51,10 @@ public class TardisEntity extends Entity implements ICustomDataHolder {
 
     @Override
     protected void readCustomDataFromNbt(@NotNull NbtCompound nbt) {
-        if (nbt.contains(PersistentEntityDataConstants.CUSTOM_NBT_KEY, NbtElement.COMPOUND_TYPE)) {
-            faux$setCustomData(nbt.getCompound(PersistentEntityDataConstants.CUSTOM_NBT_KEY));
-        }
     }
 
     @Override
     protected void writeCustomDataToNbt(@NotNull NbtCompound nbt) {
-        nbt.put(PersistentEntityDataConstants.CUSTOM_NBT_KEY, faux$getCustomData());
     }
 
     @Override
@@ -88,22 +84,9 @@ public class TardisEntity extends Entity implements ICustomDataHolder {
             return ActionResult.SUCCESS;
 
         } else {
+
             return ActionResult.FAIL;
+
         }
-    }
-
-    public NbtCompound faux$persistentData;
-
-    @Override
-    public NbtCompound faux$getCustomData() {
-        if (faux$persistentData == null)
-            faux$persistentData = new NbtCompound();
-
-        return faux$persistentData;
-    }
-
-    @Override
-    public void faux$setCustomData(NbtCompound tag) {
-        faux$persistentData = tag;
     }
 }
