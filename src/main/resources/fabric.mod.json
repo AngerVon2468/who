@@ -21,6 +21,9 @@
 		],
 		"client": [
 			"wiiu.mavity.who.WhoClient"
+		],
+		"server": [
+			"wiiu.mavity.who.WhoServer"
 		]
 	},
 	"mixins": [

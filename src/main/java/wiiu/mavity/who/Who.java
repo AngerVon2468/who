@@ -6,6 +6,7 @@ import org.slf4j.*;
 
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.item.WhoItems;
+import wiiu.mavity.who.util.data.TardisDataReaderAndWriter;
 
 // TODO: Davros chair && || Dalek cosplay of some sort
 public class Who implements ModInitializer {
@@ -22,6 +23,7 @@ public class Who implements ModInitializer {
 		Who.LOGGER.info("Who has started up!");
 
 		// Registering classes.
+		TardisDataReaderAndWriter.genTardisDataFiles();
 		WhoEntities.registerWhoEntities();
 		WhoItems.registerWhoItems();
 	}

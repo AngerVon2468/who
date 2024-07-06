@@ -30,13 +30,31 @@ public class TardisDataReaderAndWriter {
         }
         try {
             FileWriter dungeonUtilsConfigWriter = new FileWriter(tardisDataFile);
-
             dungeonUtilsConfigWriter.write("{" + System.getProperty("line.separator"));
-            dungeonUtilsConfigWriter.write("    \"tardisIds\": " + tardisIds() + System.getProperty("line.separator"));
+            dungeonUtilsConfigWriter.write("    \"tardisIds\": " + getTardisIds() + System.getProperty("line.separator"));
             dungeonUtilsConfigWriter.write("}");
             dungeonUtilsConfigWriter.close();
         } catch (IOException ioException) {
             Who.LOGGER.info(ioException.toString());
+        }
+        System.out.println(getTardisIds());
+
+    }
+
+    public static void setTardisDataFileValue(Integer value) {
+
+        try {
+
+            FileWriter dungeonUtilsConfigWriter = new FileWriter(tardisDataFile);
+            dungeonUtilsConfigWriter.write("{" + System.getProperty("line.separator"));
+            dungeonUtilsConfigWriter.write("    \"tardisIds\": " + value + System.getProperty("line.separator"));
+            dungeonUtilsConfigWriter.write("}");
+            dungeonUtilsConfigWriter.close();
+
+        } catch (IOException ioException) {
+
+            Who.LOGGER.info(ioException.toString());
+
         }
 
     }
@@ -78,7 +96,7 @@ public class TardisDataReaderAndWriter {
 
     }
 
-    public static int tardisIds() {
+    public static int getTardisIds() {
 
         return jsonTree == null ? 0 : jsonObject.get("tardisIds").getAsInt();
     }
