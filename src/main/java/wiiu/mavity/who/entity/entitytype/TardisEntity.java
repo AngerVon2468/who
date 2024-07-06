@@ -18,8 +18,11 @@ import wiiu.mavity.who.util.data.NbtUtil;
 
 public class TardisEntity extends Entity {
 
+    public int tardisId;
+
     public TardisEntity(EntityType<?> type, World world) {
         super(type, world);
+        this.tardisId = 0;
     }
 
     @Override
@@ -28,10 +31,20 @@ public class TardisEntity extends Entity {
 
     @Override
     protected void readCustomDataFromNbt(@NotNull NbtCompound nbt) {
+        if (nbt.contains("tardisId")) {
+
+            this.tardisId = nbt.getInt("tardisId");
+
+        }
     }
 
     @Override
     protected void writeCustomDataToNbt(@NotNull NbtCompound nbt) {
+        nbt.putInt("tardisId", tardisId);
+    }
+
+    public void setTardisId(Integer value) {
+        this.tardisId = value;
     }
 
     @Override
@@ -48,7 +61,7 @@ public class TardisEntity extends Entity {
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
 
         ItemStack stack = player.getStackInHand(hand);
-        int tardisId = 0; // So my code stops complaining
+        int tardisId = this.tardisId;
         player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + tardisId));
         if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 

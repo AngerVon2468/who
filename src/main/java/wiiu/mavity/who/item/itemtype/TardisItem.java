@@ -11,11 +11,15 @@ import org.jetbrains.annotations.NotNull;
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.entitytype.TardisEntity;
 
+import java.util.Random;
+
 public class TardisItem extends Item {
 
     /*
     public static final Predicate<LivingEntity> TARDIS_PREDICATE = entity -> entity.isAlive() && entity.isAttackable();
     */
+
+    Random random = new Random();
 
     public TardisItem(Settings settings) {
         super(settings);
@@ -57,6 +61,7 @@ public class TardisItem extends Item {
             tardisEntity.setPosition(player.getX() - 1, player.getY(), player.getZ());
 
         }
+        tardisEntity.setTardisId(random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
         tardisEntity.setYaw(-player.getHeadYaw());
         world.spawnEntity(tardisEntity);
 
