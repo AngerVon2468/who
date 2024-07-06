@@ -44,7 +44,6 @@ public class TardisItem extends Item {
             tardisEntity.setTardisId(tardisEntity.getTardises() + 1);
         }
         */
-        NbtCompound tardisIdNbt = CustomDataHelper.getCustomData(tardisEntity);
         if (player.getHorizontalFacing() == Direction.NORTH) {
 
             tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() - 1);
@@ -63,7 +62,6 @@ public class TardisItem extends Item {
 
         }
         tardisEntity.setYaw(-player.getHeadYaw());
-        player.sendMessage(Text.literal("(Tardis Item) Tardis id: " + tardisIdNbt.getInt("who.tardis.id")));
         world.spawnEntity(tardisEntity);
 
         return ActionResult.CONSUME;

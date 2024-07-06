@@ -1,11 +1,11 @@
 package wiiu.mavity.who.entity.entitytype;
 
-import com.faux.customentitydata.api.CustomDataHelper;
+import com.faux.customentitydata.api.*;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.*;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -21,7 +21,7 @@ import wiiu.mavity.who.util.data.NbtUtil;
 
 import java.util.Random;
 
-public class TardisEntity extends Entity {
+public class TardisEntity extends Entity implements ICustomDataHolder {
 
     Random random = new Random();
 
@@ -38,7 +38,7 @@ public class TardisEntity extends Entity {
         super.onSpawnPacket(packet);
         NbtCompound tardisId = NbtUtil.createNbt("who.tardis.id", random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
         NbtCompound existingTardisId = CustomDataHelper.getCustomData(this);
-        if (existingTardisId == null) {
+        if (!existingTardisId.contains("who.tardis.id")) {
 
             CustomDataHelper.setCustomData(this, tardisId);
 
@@ -50,13 +50,15 @@ public class TardisEntity extends Entity {
     }
 
     @Override
-    protected void readCustomDataFromNbt(NbtCompound nbt) {
-
+    protected void readCustomDataFromNbt(@NotNull NbtCompound nbt) {
+        if (nbt.contains(PersistentEntityDataConstants.CUSTOM_NBT_KEY, NbtElement.COMPOUND_TYPE)) {
+            faux$setCustomData(nbt.getCompound(PersistentEntityDataConstants.CUSTOM_NBT_KEY));
+        }
     }
 
     @Override
-    protected void writeCustomDataToNbt(NbtCompound nbt) {
-
+    protected void writeCustomDataToNbt(@NotNull NbtCompound nbt) {
+        nbt.put(PersistentEntityDataConstants.CUSTOM_NBT_KEY, faux$getCustomData());
     }
 
     @Override
@@ -88,5 +90,20 @@ public class TardisEntity extends Entity {
         } else {
             return ActionResult.FAIL;
         }
+    }
+
+    public NbtCompound faux$persistentData;
+
+    @Override
+    public NbtCompound faux$getCustomData() {
+        if (faux$persistentData == null)
+            faux$persistentData = new NbtCompound();
+
+        return faux$persistentData;
+    }
+
+    @Override
+    public void faux$setCustomData(NbtCompound tag) {
+        faux$persistentData = tag;
     }
 }
