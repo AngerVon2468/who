@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.entitytype.TardisEntity;
-import wiiu.mavity.who.util.data.TardisDataReaderAndWriter;
 
 public class TardisItem extends Item {
 
@@ -47,8 +46,6 @@ public class TardisItem extends Item {
 
         }
         tardisEntity.setYaw(-user.getHeadYaw());
-        TardisDataReaderAndWriter.setTardisDataFileValue(TardisDataReaderAndWriter.getTardisIds() + 1);
-        tardisEntity.setTardisId(TardisDataReaderAndWriter.getTardisIds());
         world.spawnEntity(tardisEntity);
 
         return ActionResult.CONSUME;
