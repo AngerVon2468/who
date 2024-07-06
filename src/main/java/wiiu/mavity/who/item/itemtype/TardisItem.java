@@ -6,6 +6,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
+import org.jetbrains.annotations.NotNull;
+
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.entitytype.TardisEntity;
 
@@ -16,7 +18,7 @@ public class TardisItem extends Item {
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
+    public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
         World world = context.getWorld();
         PlayerEntity user = context.getPlayer();
 
@@ -38,7 +40,7 @@ public class TardisItem extends Item {
             tardisEntity.setPosition(user.getX() - 1, user.getY(), user.getZ());
 
         }
-        tardisEntity.setYaw(user.getHeadYaw());
+        tardisEntity.setYaw(-user.getHeadYaw());
         world.spawnEntity(tardisEntity);
 
         return ActionResult.CONSUME;

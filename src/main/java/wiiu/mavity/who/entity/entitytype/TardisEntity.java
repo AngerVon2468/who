@@ -53,7 +53,7 @@ public class TardisEntity extends Entity {
         return this.getDataTracker().get(TARDIS_ID);
     }
 
-    private void setTardisId(int value) {
+    public void setTardisId(int value) {
         this.getDataTracker().set(TARDIS_ID, value);
     }
 
