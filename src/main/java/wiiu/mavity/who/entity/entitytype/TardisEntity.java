@@ -9,7 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.*;
 
 import wiiu.mavity.who.Who;
 import wiiu.mavity.who.item.WhoItems;
@@ -19,10 +19,12 @@ import wiiu.mavity.who.util.data.NbtUtil;
 public class TardisEntity extends Entity {
 
     public int tardisId;
+    @Nullable public String tardisOwner;
 
     public TardisEntity(EntityType<?> type, World world) {
         super(type, world);
         this.tardisId = 0;
+        this.tardisOwner = null;
     }
 
     @Override
@@ -36,15 +38,33 @@ public class TardisEntity extends Entity {
             this.tardisId = nbt.getInt("tardisId");
 
         }
+        if (nbt.contains("tardisOwner")) {
+
+            this.tardisOwner = nbt.getString("tardisOwner");
+
+        }
     }
 
     @Override
     protected void writeCustomDataToNbt(@NotNull NbtCompound nbt) {
         nbt.putInt("tardisId", tardisId);
+        nbt.putString("tardisOwner", tardisOwner);
     }
 
     public void setTardisId(Integer value) {
         this.tardisId = value;
+    }
+
+    public void setTardisOwner(@Nullable String value) {
+        this.tardisOwner = value;
+    }
+
+    public int getTardisId() {
+        return this.tardisId;
+    }
+
+    public @Nullable String getTardisOwner() {
+        return this.tardisOwner;
     }
 
     @Override
@@ -61,8 +81,8 @@ public class TardisEntity extends Entity {
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
 
         ItemStack stack = player.getStackInHand(hand);
-        int tardisId = this.tardisId;
-        player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + tardisId));
+        player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + this.getTardisId()));
+        player.sendMessage(Text.literal("(Tardis Entity) Tardis Owner: " + this.getTardisOwner()));
         if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 
             DimensionalUtil.changePlayerEntityDimension(serverPlayer, Who.MOD_ID, "tardis_dim");
@@ -70,8 +90,16 @@ public class TardisEntity extends Entity {
 
         } else if (stack.isOf(WhoItems.TARDIS)) {
 
-            NbtUtil.setNbt(stack, "who.tardis.id", tardisId);
-            return ActionResult.SUCCESS;
+            if (stack.getNbt() != null && !stack.getNbt().contains("who.tardis.id")) {
+
+                return ActionResult.FAIL;
+
+            } else {
+
+                NbtUtil.setNbt(stack, "who.tardis.id", this.getTardisId());
+                return ActionResult.SUCCESS;
+
+            }
 
         }
         else {

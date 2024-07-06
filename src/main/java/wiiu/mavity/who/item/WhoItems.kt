@@ -1,6 +1,7 @@
 package wiiu.mavity.who.item
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+
 import net.minecraft.item.Item
 import net.minecraft.registry.*
 import net.minecraft.util.Identifier

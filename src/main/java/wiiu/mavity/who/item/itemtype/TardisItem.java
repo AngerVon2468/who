@@ -62,6 +62,7 @@ public class TardisItem extends Item {
 
         }
         tardisEntity.setTardisId(random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        tardisEntity.setTardisOwner(player.getEntityName());
         tardisEntity.setYaw(-player.getHeadYaw());
         world.spawnEntity(tardisEntity);
 
