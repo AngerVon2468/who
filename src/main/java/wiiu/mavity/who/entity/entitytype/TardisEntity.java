@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import wiiu.mavity.who.Who;
 import wiiu.mavity.who.item.WhoItems;
 import wiiu.mavity.who.util.DimensionalUtil;
+import wiiu.mavity.who.util.data.TardisDataReaderAndWriter;
 
 public class TardisEntity extends Entity {
 
@@ -69,7 +70,7 @@ public class TardisEntity extends Entity {
         } else if (stack.isOf(WhoItems.TARDIS)) {
 
             NbtCompound nbt = new NbtCompound();
-            nbt.putInt("who.tardis.id", this.getTardisId());
+            nbt.putInt("who.tardis.id", TardisDataReaderAndWriter.getTardisIds());
             stack.setNbt(nbt);
             return ActionResult.SUCCESS;
 
