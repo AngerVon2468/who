@@ -37,7 +37,16 @@ public class TardisEntity extends Entity {
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {
         super.onSpawnPacket(packet);
         NbtCompound tardisId = NbtUtil.createNbt("who.tardis.id", random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
-        CustomDataHelper.setCustomData(this, tardisId);
+        NbtCompound existingTardisId = CustomDataHelper.getCustomData(this);
+        if (existingTardisId == null) {
+
+            CustomDataHelper.setCustomData(this, tardisId);
+
+        } else {
+
+            CustomDataHelper.setCustomData(this, existingTardisId);
+
+        }
     }
 
     @Override
@@ -64,7 +73,7 @@ public class TardisEntity extends Entity {
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
         NbtCompound tardisIdNbt = CustomDataHelper.getCustomData(this);
         int tardisId = tardisIdNbt.getInt("who.tardis.id");
-        player.sendMessage(Text.literal("Tardis id is: " + tardisId));
+        player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + tardisId));
         ItemStack stack = player.getStackInHand(hand);
         if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 

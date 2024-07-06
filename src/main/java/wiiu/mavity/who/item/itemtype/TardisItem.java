@@ -63,7 +63,7 @@ public class TardisItem extends Item {
 
         }
         tardisEntity.setYaw(-player.getHeadYaw());
-        player.sendMessage(Text.literal("Tardis id: " + tardisIdNbt.getInt("who.tardis.id")));
+        player.sendMessage(Text.literal("(Tardis Item) Tardis id: " + tardisIdNbt.getInt("who.tardis.id")));
         world.spawnEntity(tardisEntity);
 
         return ActionResult.CONSUME;
