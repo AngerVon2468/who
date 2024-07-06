@@ -36,13 +36,11 @@ public class TardisEntity extends Entity {
     }
 
     @Override
-    @SuppressWarnings("all")
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {
         super.onSpawnPacket(packet);
-        boolean hasAttachment = this.hasAttached(TardisDataAttachments.TARDIS_ID); // false
-        int tardisId = this.getAttachedOrCreate(TardisDataAttachments.TARDIS_ID); // 0, auto-initialized !
-        hasAttachment = this.hasAttached(TardisDataAttachments.TARDIS_ID); // now true
-        this.setAttached(TardisDataAttachments.TARDIS_ID, random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE)); // Change Tardis ID
+        if (!this.hasAttached(TardisDataAttachments.TARDIS_ID)) {
+            this.setAttached(TardisDataAttachments.TARDIS_ID, random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE)); // Change Tardis ID
+        }
     }
 
     @Override
@@ -97,11 +95,9 @@ public class TardisEntity extends Entity {
 
     public static class TardisDataAttachments {
 
-        public static AttachmentType<Integer> TARDIS_ID = AttachmentRegistry.<Integer>builder() // Builder for finer control
-                .persistent(Codec.INT) // required codec for persistence
-                .copyOnDeath() // will persist over entity death and respawn
-                .initializer(() -> 0) // default value
-                .buildAndRegister(new Identifier("who:tardis_id")
+        public static AttachmentType<Integer> TARDIS_ID = AttachmentRegistry.createPersistent(
+                new Identifier("who:tardis_id"),
+                Codec.INT
         );
     }
 }
