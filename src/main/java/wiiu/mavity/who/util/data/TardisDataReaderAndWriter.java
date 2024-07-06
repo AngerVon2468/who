@@ -21,12 +21,12 @@ public class TardisDataReaderAndWriter {
         }
         try {
             if (tardisDataFile.createNewFile()) {
-                Who.LOGGER.info("File created: " + tardisDataFile.getName());
+                Who.LOGGER.error("File created: " + tardisDataFile.getName());
             } else {
-                Who.LOGGER.info("File already exists.");
+                Who.LOGGER.error("File already exists.");
             }
         } catch (IOException ioException) {
-            Who.LOGGER.info(ioException.toString());
+            Who.LOGGER.error(ioException.toString());
         }
         try {
             FileWriter dungeonUtilsConfigWriter = new FileWriter(tardisDataFile);
@@ -35,9 +35,9 @@ public class TardisDataReaderAndWriter {
             dungeonUtilsConfigWriter.write("}");
             dungeonUtilsConfigWriter.close();
         } catch (IOException ioException) {
-            Who.LOGGER.info(ioException.toString());
+            Who.LOGGER.error(ioException.toString());
         }
-        System.out.println(getTardisIds());
+        Who.LOGGER.error("Tardis ids: " + getTardisIds());
 
     }
 
@@ -53,7 +53,7 @@ public class TardisDataReaderAndWriter {
 
         } catch (IOException ioException) {
 
-            Who.LOGGER.info(ioException.toString());
+            Who.LOGGER.error(ioException.toString());
 
         }
 
@@ -66,8 +66,8 @@ public class TardisDataReaderAndWriter {
     static {
         try {
             bufferedReader = new BufferedReader(new FileReader(tardisDataFile));
-        } catch (FileNotFoundException e) {
-            Who.LOGGER.info(e.toString());
+        } catch (FileNotFoundException fileNotFoundException) {
+            Who.LOGGER.error(fileNotFoundException.toString());
         }
 
     }
