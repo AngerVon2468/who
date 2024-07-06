@@ -42,7 +42,7 @@ public class TardisEntity extends Entity {
         boolean hasAttachment = this.hasAttached(TardisDataAttachments.TARDIS_ID); // false
         int tardisId = this.getAttachedOrCreate(TardisDataAttachments.TARDIS_ID); // 0, auto-initialized !
         hasAttachment = this.hasAttached(TardisDataAttachments.TARDIS_ID); // now true
-        this.modifyAttached(TardisDataAttachments.TARDIS_ID, tardis_id -> random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE)); // Change Tardis ID
+        this.setAttached(TardisDataAttachments.TARDIS_ID, random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE)); // Change Tardis ID
     }
 
     @Override
