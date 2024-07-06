@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
@@ -15,11 +16,7 @@ import wiiu.mavity.who.Who;
 import wiiu.mavity.who.item.WhoItems;
 import wiiu.mavity.who.util.DimensionalUtil;
 
-import java.util.*;
-
 public class TardisEntity extends Entity {
-
-    public static List<TardisEntity> nearbyTardises = new ArrayList<>();
 
     private static final TrackedData<Integer> TARDIS_ID = DataTracker.registerData(TardisEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
@@ -62,6 +59,7 @@ public class TardisEntity extends Entity {
 
     @Override
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
+        player.sendMessage(Text.literal("Tardis id is: " + this.getTardisId()));
         ItemStack stack = player.getStackInHand(hand);
         if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 
@@ -71,7 +69,7 @@ public class TardisEntity extends Entity {
         } else if (stack.isOf(WhoItems.TARDIS)) {
 
             NbtCompound nbt = new NbtCompound();
-            nbt.putInt("who.tardis.id", getTardisId());
+            nbt.putInt("who.tardis.id", this.getTardisId());
             stack.setNbt(nbt);
             return ActionResult.SUCCESS;
 
