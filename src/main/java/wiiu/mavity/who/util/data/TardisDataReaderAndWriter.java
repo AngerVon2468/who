@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
+import org.jetbrains.annotations.Nullable;
 import wiiu.mavity.who.Who;
 
 import java.io.*;
@@ -48,29 +48,39 @@ public class TardisDataReaderAndWriter {
         */
     }
 
-    public static void main(String[] args) throws IOException {
-        what();
+    public static BufferedReader bufferedReader;
+
+    public static Gson gson = new Gson();
+
+    static {
+        try {
+            bufferedReader = new BufferedReader(new FileReader(tardisDataFile));
+        } catch (FileNotFoundException e) {
+            Who.LOGGER.info(e.toString());
+        }
+
     }
 
-    public static void what() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(tardisDataFile));
+    public static Object json = gson.fromJson(bufferedReader, Object.class);
 
-        Gson gson = new Gson();
-        Object json = gson.fromJson(bufferedReader, Object.class);
+    public static JsonParser parser = new JsonParser();
+    public static JsonElement jsonTree = parser.parse(json.toString());
+    public static JsonObject jsonObject;
 
-        JsonParser parser = new JsonParser();
-        JsonElement jsonTree = parser.parse(json.toString());
+    static {
 
         if (jsonTree.isJsonObject()) {
-            JsonObject jsonObject = jsonTree.getAsJsonObject();
-            System.out.println(jsonObject.get("tardisIds"));
+            jsonObject = jsonTree.getAsJsonObject();
         }
+
     }
 
-    /*
     public static int tardisIds() {
 
-        return jsonObject == null ? 0 : jsonObject.get("tardisIds").getAsInt();
+        return jsonObject.get("tardisIds").getAsInt();
     }
-    */
+
+    public static void main(String[] args) {
+        System.out.println(tardisIds());
+    }
 }
