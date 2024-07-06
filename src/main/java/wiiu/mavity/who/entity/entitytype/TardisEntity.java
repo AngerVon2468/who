@@ -66,17 +66,12 @@ public class TardisEntity extends Entity {
     @Override
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
 
+        ItemStack stack = player.getStackInHand(hand);
         if (this.hasAttached(TardisDataAttachments.TARDIS_ID)) {
 
-            int tardisId = this.getAttached(TardisDataAttachments.TARDIS_ID).intValue();
+            int tardisId = this.getAttached(TardisDataAttachments.TARDIS_ID);
             player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + tardisId));
-            ItemStack stack = player.getStackInHand(hand);
-            if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
-
-                DimensionalUtil.changePlayerEntityDimension(serverPlayer, Who.MOD_ID, "tardis_dim");
-                return ActionResult.SUCCESS;
-
-            } else if (stack.isOf(WhoItems.TARDIS)) {
+            if (stack.isOf(WhoItems.TARDIS)) {
 
                 NbtUtil.setNbt(stack, "who.tardis.id", tardisId);
                 return ActionResult.SUCCESS;
@@ -87,6 +82,11 @@ public class TardisEntity extends Entity {
 
             }
 
+        } else if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
+
+            DimensionalUtil.changePlayerEntityDimension(serverPlayer, Who.MOD_ID, "tardis_dim");
+            return ActionResult.SUCCESS;
+
         } else {
 
             return ActionResult.FAIL;
@@ -95,14 +95,13 @@ public class TardisEntity extends Entity {
 
     }
 
-    @SuppressWarnings("all")
     public static class TardisDataAttachments {
 
-        public static final AttachmentType<Integer> TARDIS_ID = AttachmentRegistry.<Integer>builder() // Builder for finer control
+        public static AttachmentType<Integer> TARDIS_ID = AttachmentRegistry.<Integer>builder() // Builder for finer control
                 .persistent(Codec.INT) // required codec for persistence
                 .copyOnDeath() // will persist over entity death and respawn
                 .initializer(() -> 0) // default value
-                .buildAndRegister(new Identifier(Who.MOD_ID, "tardis_id")
+                .buildAndRegister(new Identifier("who:tardis_id")
         );
     }
 }
