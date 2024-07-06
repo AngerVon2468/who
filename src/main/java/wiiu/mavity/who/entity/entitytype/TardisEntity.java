@@ -95,9 +95,11 @@ public class TardisEntity extends Entity {
 
     public static class TardisDataAttachments {
 
-        public static AttachmentType<Integer> TARDIS_ID = AttachmentRegistry.createPersistent(
-                new Identifier("who:tardis_id"),
-                Codec.INT
+        public static final AttachmentType<Integer> TARDIS_ID = AttachmentRegistry.<Integer>builder() // Builder for finer control
+                .persistent(Codec.INT) // required codec for persistence
+                .copyOnDeath() // will persist over entity death and respawn
+                .initializer(() -> 0) // default value
+                .buildAndRegister(new Identifier("who:tardisId")
         );
     }
 }
