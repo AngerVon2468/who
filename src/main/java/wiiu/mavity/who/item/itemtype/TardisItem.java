@@ -1,7 +1,11 @@
 package wiiu.mavity.who.item.itemtype;
 
+import com.faux.customentitydata.api.CustomDataHelper;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -40,6 +44,7 @@ public class TardisItem extends Item {
             tardisEntity.setTardisId(tardisEntity.getTardises() + 1);
         }
         */
+        NbtCompound tardisIdNbt = CustomDataHelper.getCustomData(tardisEntity);
         if (player.getHorizontalFacing() == Direction.NORTH) {
 
             tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() - 1);
@@ -58,10 +63,7 @@ public class TardisItem extends Item {
 
         }
         tardisEntity.setYaw(-player.getHeadYaw());
-        /*
-        player.sendMessage(Text.literal("Tardis id: " + tardisEntity.getTardisId()));
-        player.sendMessage(Text.literal("Tardises: " + tardisEntity.getTardises()));
-        */
+        player.sendMessage(Text.literal("Tardis id: " + tardisIdNbt.getInt("who.tardis.id")));
         world.spawnEntity(tardisEntity);
 
         return ActionResult.CONSUME;
