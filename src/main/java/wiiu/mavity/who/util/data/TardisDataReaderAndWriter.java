@@ -1,5 +1,11 @@
 package wiiu.mavity.who.util.data;
 
+import com.google.gson.Gson;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import wiiu.mavity.who.Who;
 
 import java.io.*;
@@ -26,7 +32,7 @@ public class TardisDataReaderAndWriter {
         } catch (IOException ioException) {
             Who.LOGGER.info(ioException.toString());
         }
-
+        /*
         try {
             FileWriter dungeonUtilsConfigWriter = new FileWriter(tardisDataFile);
 
@@ -37,15 +43,34 @@ public class TardisDataReaderAndWriter {
         } catch (IOException ioException) {
             Who.LOGGER.info(ioException.toString());
         }
-        /*
+
         System.out.println(tardisIds());
         */
+    }
+
+    public static void main(String[] args) throws IOException {
+        what();
+    }
+
+    public static void what() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(tardisDataFile));
+
+        Gson gson = new Gson();
+        Object json = gson.fromJson(bufferedReader, Object.class);
+
+        JsonParser parser = new JsonParser();
+        JsonElement jsonTree = parser.parse(json.toString());
+
+        if (jsonTree.isJsonObject()) {
+            JsonObject jsonObject = jsonTree.getAsJsonObject();
+            System.out.println(jsonObject.get("tardisIds"));
+        }
     }
 
     /*
     public static int tardisIds() {
 
-        return dungeonUtilsAsJsonObject == null ? 0 : dungeonUtilsAsJsonObject.get("tardisIds").getAsInt();
+        return jsonObject == null ? 0 : jsonObject.get("tardisIds").getAsInt();
     }
     */
 }
