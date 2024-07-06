@@ -1,12 +1,10 @@
 package wiiu.mavity.who;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
 import org.slf4j.*;
 
 import wiiu.mavity.who.entity.WhoEntities;
-import wiiu.mavity.who.entity.entitytype.TardisEntity;
 import wiiu.mavity.who.item.WhoItems;
 
 // TODO: Davros chair && || Dalek cosplay of some sort
@@ -26,6 +24,8 @@ public class Who implements ModInitializer {
 		// Registering classes.
 		WhoEntities.registerWhoEntities();
 		WhoItems.registerWhoItems();
+		/*
 		FabricDefaultAttributeRegistry.register(WhoEntities.TARDIS, TardisEntity.createLivingAttributes());
+		*/
 	}
 }
