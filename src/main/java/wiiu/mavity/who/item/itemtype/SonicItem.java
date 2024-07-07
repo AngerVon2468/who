@@ -1,7 +1,6 @@
 package wiiu.mavity.who.item.itemtype;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.BlockTags;
@@ -13,8 +12,6 @@ import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
 
-import wiiu.mavity.who.item.WhoItems;
-
 public class SonicItem extends Item {
 
     public int i;
@@ -24,6 +21,14 @@ public class SonicItem extends Item {
         i = 0;
     }
 
+    public int getI() {
+        return this.i;
+    }
+
+    public void setI(int value) {
+        this.i = value;
+    }
+
     @Override
     public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
 
@@ -31,16 +36,16 @@ public class SonicItem extends Item {
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
         PlayerEntity player = context.getPlayer();
-        this.i++;
+        this.setI(this.getI() + 1);
         if (blockState.isIn(BlockTags.DOORS)) {
 
             if (!blockState.get(Properties.OPEN)) {
 
-                this.openDoor(world, blockState, blockPos, true);
+                this.openDoor(world, blockState, blockPos, true, player);
 
             } else {
 
-                this.openDoor(world, blockState, blockPos, false);
+                this.openDoor(world, blockState, blockPos, false, player);
 
             }
 
@@ -48,40 +53,32 @@ public class SonicItem extends Item {
 
             if (!blockState.get(Properties.LIT)) {
 
-                this.turnOnLamp(world, blockState, blockPos, true);
+                this.turnOnLamp(world, blockState, blockPos, true, player);
 
             } else {
 
-                this.turnOnLamp(world, blockState, blockPos, false);
+                this.turnOnLamp(world, blockState, blockPos, false, player);
 
             }
 
         }
-        player.sendMessage(Text.literal("UsageTicks: " + this.i));
 
         return ActionResult.SUCCESS;
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (entity instanceof PlayerEntity player && player.getStackInHand(player.getActiveHand()).isOf(WhoItems.SONIC) && player.isUsingItem()) {
-
-            this.i = 0;
-
-        }
-    }
-
-    public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open) {
-        if (state.get(Properties.OPEN) != open && this.i % 80 == 0) {
+    public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open, PlayerEntity player) {
+        player.sendMessage(Text.literal("UsageTicks: " + this.getI()));
+        if (state.get(Properties.OPEN) != open && this.getI() % 45 == 0) {
             world.setBlockState(pos, state.with(Properties.OPEN, open));
-            this.i = 0;
+            this.setI(1);
         }
     }
 
-    public void turnOnLamp(World world, @NotNull BlockState state, BlockPos pos, boolean lit) {
-        if (state.get(Properties.LIT) != lit && this.i % 80 == 0) {
+    public void turnOnLamp(World world, @NotNull BlockState state, BlockPos pos, boolean lit, PlayerEntity player) {
+        player.sendMessage(Text.literal("UsageTicks: " + this.getI()));
+        if (state.get(Properties.LIT) != lit && this.getI() % 45 == 0) {
             world.setBlockState(pos, state.with(Properties.LIT, lit));
-            this.i = 0;
+            this.setI(1);
         }
     }
 }
