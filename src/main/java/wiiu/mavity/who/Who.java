@@ -6,6 +6,7 @@ import org.slf4j.*;
 
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.item.WhoItems;
+import wiiu.mavity.who.block.*;
 
 // TODO: Davros chair && || Dalek cosplay of some sort
 public class Who implements ModInitializer {
@@ -24,6 +25,8 @@ public class Who implements ModInitializer {
 		// Registering classes.
 		WhoEntities.registerWhoEntities();
 		WhoItems.registerWhoItems();
+		WhoBlocks.registerWhoBlocks();
+		WhoBlockEntities.registerWhoBlockEntities();
 		/*
 		FabricDefaultAttributeRegistry.register(WhoEntities.TARDIS, TardisEntity.createLivingAttributes());
 		*/
