@@ -1,11 +1,9 @@
 package wiiu.mavity.who.item.itemtype;
 
 import net.minecraft.block.*;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -35,7 +33,6 @@ public class SonicItem extends Item {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
-        PlayerEntity player = context.getPlayer();
         if (!world.isClient()) {
             if (blockState.isIn(BlockTags.DOORS)) {
 
@@ -69,7 +66,7 @@ public class SonicItem extends Item {
 
     public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open) {
         this.i++;
-        if (state.get(Properties.OPEN) != open && this.getI() % 40 == 0) {
+        if (state.get(Properties.OPEN) != open && this.getI() % 20 == 0) {
             this.setI(0);
             world.setBlockState(pos, state.with(Properties.OPEN, open));
         }
@@ -77,7 +74,7 @@ public class SonicItem extends Item {
 
     public void turnOnLamp(World world, @NotNull BlockState state, BlockPos pos, boolean lit) {
         this.i++;
-        if (state.get(Properties.LIT) != lit && this.getI() % 40 == 0) {
+        if (state.get(Properties.LIT) != lit && this.getI() % 20 == 0) {
             this.setI(0);
             world.setBlockState(pos, state.with(Properties.LIT, lit));
         }
