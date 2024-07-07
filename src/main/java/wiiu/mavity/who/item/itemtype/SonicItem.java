@@ -22,26 +22,33 @@ public class SonicItem extends Item {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
-        if (blockState.isIn(BlockTags.DOORS) && !blockState.get(Properties.OPEN)) {
+        if (blockState.isIn(BlockTags.DOORS)) {
 
-            this.openDoor(world, blockState, blockPos, true);
+            if (!blockState.get(Properties.OPEN)) {
 
-        } else {
+                this.openDoor(world, blockState, blockPos, true);
 
-            this.openDoor(world, blockState, blockPos, false);
+            } else {
+
+                this.openDoor(world, blockState, blockPos, false);
+
+            }
+
+        } else if (blockState.isOf(Blocks.REDSTONE_LAMP)) {
+
+            if (!blockState.get(Properties.LIT)) {
+
+                this.turnOnLamp(world, blockState, blockPos, true);
+
+            } else {
+
+                this.turnOnLamp(world, blockState, blockPos, false);
+
+            }
 
         }
-        if (blockState.isOf(Blocks.REDSTONE_LAMP) && !blockState.get(Properties.LIT)) {
 
-            this.turnOnLamp(world, blockState, blockPos, true);
-
-        } else {
-
-            this.turnOnLamp(world, blockState, blockPos, false);
-
-        }
-
-        return ActionResult.SUCCESS;
+        return ActionResult.CONSUME;
     }
 
     public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open) {
