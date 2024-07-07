@@ -1,14 +1,17 @@
 package wiiu.mavity.who.item.itemtype;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
+
+import wiiu.mavity.who.util.data.NbtUtil;
 
 public class SonicItem extends Item {
 
@@ -25,6 +28,33 @@ public class SonicItem extends Item {
 
     public void setI(int value) {
         this.i = value;
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(@NotNull World world, @NotNull PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getStackInHand(hand);
+
+        if (!world.isClient()) {
+            if (user.isSneaking() && stack.getNbt() == null) {
+
+                NbtUtil.setNbt(stack, "who.sonic.colour.green", 1);
+
+            } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.colour.green")) {
+
+                NbtUtil.setNbt(stack, "who.sonic.colour.purple", 1);
+
+            } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.colour.purple")) {
+
+                NbtUtil.setNbt(stack, "who.sonic.colour.orange", 1);
+
+            } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.colour.orange")) {
+
+                stack.removeSubNbt("who.sonic.colour.orange");
+
+            }
+        }
+
+        return TypedActionResult.success(stack);
     }
 
     @Override

@@ -1,8 +1,8 @@
 {
 	"credit": "EpicVon2468 and Blockbench",
 	"textures": {
-		"0": "who:item/sonic_base_blue",
-		"particle": "who:item/sonic_base_blue"
+		"0": "who:item/sonic_base_green",
+		"particle": "who:item/sonic_base_green"
 	},
 	"elements": [
 		{
@@ -147,25 +147,5 @@
 		"fixed": {
 			"rotation": [0, 180, 0]
 		}
-	},
-	"overrides": [
-		{
-			"predicate": {
-				"green": 1
-			},
-			"model": "who:item/sonic/sonic_base_green"
-		},
-		{
-			"predicate": {
-				"purple": 1
-			},
-			"model": "who:item/sonic/sonic_base_purple"
-		},
-		{
-			"predicate": {
-				"orange": 1
-			},
-			"model": "who:item/sonic/sonic_base_orange"
-		}
-	]
+	}
 }
