@@ -36,7 +36,6 @@ public class SonicItem extends Item {
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
         PlayerEntity player = context.getPlayer();
-        this.setI(this.getI() + 1);
         if (blockState.isIn(BlockTags.DOORS)) {
 
             if (!blockState.get(Properties.OPEN)) {
@@ -67,16 +66,18 @@ public class SonicItem extends Item {
     }
 
     public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open, PlayerEntity player) {
+        this.i++;
         player.sendMessage(Text.literal("UsageTicks: " + this.getI()));
-        if (state.get(Properties.OPEN) != open && this.getI() % 45 == 0) {
+        if (state.get(Properties.OPEN) != open && this.getI() % 40 == 0) {
             world.setBlockState(pos, state.with(Properties.OPEN, open));
             this.setI(1);
         }
     }
 
     public void turnOnLamp(World world, @NotNull BlockState state, BlockPos pos, boolean lit, PlayerEntity player) {
+        this.i++;
         player.sendMessage(Text.literal("UsageTicks: " + this.getI()));
-        if (state.get(Properties.LIT) != lit && this.getI() % 45 == 0) {
+        if (state.get(Properties.LIT) != lit && this.getI() % 40 == 0) {
             world.setBlockState(pos, state.with(Properties.LIT, lit));
             this.setI(1);
         }
