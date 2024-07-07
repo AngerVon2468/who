@@ -18,7 +18,7 @@ public class SonicModifierBlockEntity extends BlockEntity {
     private int number = 0;
 
     public SonicModifierBlockEntity(BlockPos pos, BlockState state) {
-        super(WhoBlockEntities.DEMO_BLOCK_ENTITY, pos, state);
+        super(WhoBlockEntities.SONIC_MODIFIER_ENTITY, pos, state);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class SonicModifierBlockEntity extends BlockEntity {
 
     @Override
     public void readNbt(@NotNull NbtCompound nbt) {
-        this.number = nbt.getInt("who.sonic.");
+        this.number = nbt.getInt("who.sonic.value");
     }
 
     @Nullable

@@ -11,7 +11,7 @@ import wiiu.mavity.who.block.entitytype.SonicModifierBlockEntity;
 
 public class WhoBlockEntities {
 
-    public static final BlockEntityType<SonicModifierBlockEntity> DEMO_BLOCK_ENTITY = Registry.register(
+    public static final BlockEntityType<SonicModifierBlockEntity> SONIC_MODIFIER_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             new Identifier(Who.MOD_ID, "sonic_modifier_entity"),
             FabricBlockEntityTypeBuilder.create(SonicModifierBlockEntity::new, WhoBlocks.SONIC_MODIFIER).build()
