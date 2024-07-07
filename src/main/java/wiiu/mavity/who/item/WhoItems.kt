@@ -7,7 +7,7 @@ import net.minecraft.registry.*
 import net.minecraft.util.Identifier
 
 import wiiu.mavity.who.Who
-import wiiu.mavity.who.item.itemtype.TardisItem
+import wiiu.mavity.who.item.itemtype.*
 
 object WhoItems {
 
@@ -17,6 +17,9 @@ object WhoItems {
 
     @JvmField
     val TARDIS = registerItem("tardis", TardisItem(FabricItemSettings().maxCount(1).maxDamage(0)))
+
+    @JvmField
+    val SONIC = registerItem("sonic", SonicItem(FabricItemSettings().maxCount(1).maxDamage(0)))
 
     @JvmStatic
     fun registerWhoItems() {
