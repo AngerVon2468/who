@@ -18,6 +18,8 @@ import wiiu.mavity.who.util.data.NbtUtil;
 
 public class TardisEntity extends Entity {
 
+    World world = this.getWorld();
+
     public int tardisId;
     @Nullable public String tardisOwner;
 
@@ -80,33 +82,38 @@ public class TardisEntity extends Entity {
     @Override
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
 
-        ItemStack stack = player.getStackInHand(hand);
-        player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + this.getTardisId()));
-        player.sendMessage(Text.literal("(Tardis Entity) Tardis Owner: " + this.getTardisOwner()));
-        if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
+        if (!world.isClient()) {
+            ItemStack stack = player.getStackInHand(hand);
+            player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + this.getTardisId()));
+            player.sendMessage(Text.literal("(Tardis Entity) Tardis Owner: " + this.getTardisOwner()));
+            if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 
-            DimensionalUtil.changePlayerEntityDimension(serverPlayer, Who.MOD_ID, "tardis_dim");
-            return ActionResult.SUCCESS;
+                DimensionalUtil.changePlayerEntityDimension(serverPlayer, Who.MOD_ID, "tardis_dim");
+                return ActionResult.SUCCESS;
 
-        } else if (stack.isOf(WhoItems.TARDIS)) {
+            } else if (stack.isOf(WhoItems.TARDIS)) {
 
-            if (stack.getNbt() != null && !stack.getNbt().contains("who.tardis.id")) {
+                if (stack.getNbt() != null && !stack.getNbt().contains("who.tardis.id")) {
 
-                return ActionResult.FAIL;
+                    return ActionResult.FAIL;
+
+                } else {
+
+                    NbtUtil.setNbt(stack, "who.tardis.id", this.getTardisId());
+                    return ActionResult.SUCCESS;
+
+                }
 
             } else {
 
-                NbtUtil.setNbt(stack, "who.tardis.id", this.getTardisId());
-                return ActionResult.SUCCESS;
+                return ActionResult.FAIL;
 
             }
 
-        }
-        else {
+        } else {
 
             return ActionResult.FAIL;
 
         }
-
     }
 }

@@ -32,39 +32,42 @@ public class TardisItem extends Item {
 
     @Override
     public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
+
         World world = context.getWorld();
-        PlayerEntity player = context.getPlayer();
+        if (!world.isClient()) {
+            PlayerEntity player = context.getPlayer();
 
-        TardisEntity tardisEntity = WhoEntities.TARDIS.create(world);
-        /*
-        final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setBaseMaxDistance(Double.MAX_VALUE).setPredicate(TARDIS_PREDICATE);
-        List<TardisEntity> tardises = world.getTargets(TardisEntity.class, TARGET_PREDICATE, tardisEntity, tardisEntity.getBoundingBox().expand(Double.MAX_VALUE)).stream().toList();
-        for (TardisEntity tardis : tardises) {
-            tardisEntity.setTardises(tardisEntity.getTardises() + 1);
-            tardisEntity.setTardisId(tardisEntity.getTardises() + 1);
+            TardisEntity tardisEntity = WhoEntities.TARDIS.create(world);
+            /*
+            final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setBaseMaxDistance(Double.MAX_VALUE).setPredicate(TARDIS_PREDICATE);
+            List<TardisEntity> tardises = world.getTargets(TardisEntity.class, TARGET_PREDICATE, tardisEntity, tardisEntity.getBoundingBox().expand(Double.MAX_VALUE)).stream().toList();
+            for (TardisEntity tardis : tardises) {
+                tardisEntity.setTardises(tardisEntity.getTardises() + 1);
+                tardisEntity.setTardisId(tardisEntity.getTardises() + 1);
+            }
+            */
+            if (player.getHorizontalFacing() == Direction.NORTH) {
+
+                tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() - 1);
+
+            } else if (player.getHorizontalFacing() == Direction.SOUTH) {
+
+                tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() + 1);
+
+            } else if (player.getHorizontalFacing() == Direction.EAST) {
+
+                tardisEntity.setPosition(player.getX() + 1, player.getY(), player.getZ());
+
+            } else if (player.getHorizontalFacing() == Direction.WEST) {
+
+                tardisEntity.setPosition(player.getX() - 1, player.getY(), player.getZ());
+
+            }
+            tardisEntity.setTardisId(random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
+            tardisEntity.setTardisOwner(player.getEntityName());
+            tardisEntity.setYaw(-player.getHeadYaw());
+            world.spawnEntity(tardisEntity);
         }
-        */
-        if (player.getHorizontalFacing() == Direction.NORTH) {
-
-            tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() - 1);
-
-        } else if (player.getHorizontalFacing() == Direction.SOUTH) {
-
-            tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() + 1);
-
-        } else if (player.getHorizontalFacing() == Direction.EAST) {
-
-            tardisEntity.setPosition(player.getX() + 1, player.getY(), player.getZ());
-
-        } else if (player.getHorizontalFacing() == Direction.WEST) {
-
-            tardisEntity.setPosition(player.getX() - 1, player.getY(), player.getZ());
-
-        }
-        tardisEntity.setTardisId(random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
-        tardisEntity.setTardisOwner(player.getEntityName());
-        tardisEntity.setYaw(-player.getHeadYaw());
-        world.spawnEntity(tardisEntity);
 
         return ActionResult.CONSUME;
     }

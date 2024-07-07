@@ -36,50 +36,50 @@ public class SonicItem extends Item {
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
         PlayerEntity player = context.getPlayer();
-        if (blockState.isIn(BlockTags.DOORS)) {
+        if (!world.isClient()) {
+            if (blockState.isIn(BlockTags.DOORS)) {
 
-            if (!blockState.get(Properties.OPEN)) {
+                if (!blockState.get(Properties.OPEN)) {
 
-                this.openDoor(world, blockState, blockPos, true, player);
+                    this.openDoor(world, blockState, blockPos, true);
 
-            } else {
+                } else {
 
-                this.openDoor(world, blockState, blockPos, false, player);
+                    this.openDoor(world, blockState, blockPos, false);
+
+                }
+
+            } else if (blockState.isOf(Blocks.REDSTONE_LAMP)) {
+
+                if (!blockState.get(Properties.LIT)) {
+
+                    this.turnOnLamp(world, blockState, blockPos, true);
+
+                } else {
+
+                    this.turnOnLamp(world, blockState, blockPos, false);
+
+                }
 
             }
-
-        } else if (blockState.isOf(Blocks.REDSTONE_LAMP)) {
-
-            if (!blockState.get(Properties.LIT)) {
-
-                this.turnOnLamp(world, blockState, blockPos, true, player);
-
-            } else {
-
-                this.turnOnLamp(world, blockState, blockPos, false, player);
-
-            }
-
         }
 
         return ActionResult.SUCCESS;
     }
 
-    public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open, PlayerEntity player) {
+    public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open) {
         this.i++;
-        player.sendMessage(Text.literal("UsageTicks: " + this.getI()));
         if (state.get(Properties.OPEN) != open && this.getI() % 40 == 0) {
+            this.setI(0);
             world.setBlockState(pos, state.with(Properties.OPEN, open));
-            this.setI(1);
         }
     }
 
-    public void turnOnLamp(World world, @NotNull BlockState state, BlockPos pos, boolean lit, PlayerEntity player) {
+    public void turnOnLamp(World world, @NotNull BlockState state, BlockPos pos, boolean lit) {
         this.i++;
-        player.sendMessage(Text.literal("UsageTicks: " + this.getI()));
         if (state.get(Properties.LIT) != lit && this.getI() % 40 == 0) {
+            this.setI(0);
             world.setBlockState(pos, state.with(Properties.LIT, lit));
-            this.setI(1);
         }
     }
 }
