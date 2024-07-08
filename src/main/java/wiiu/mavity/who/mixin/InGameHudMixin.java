@@ -14,7 +14,7 @@ import wiiu.mavity.who.Who;
 public abstract class InGameHudMixin {
 
 	@Unique
-	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier(Who.MOD_ID, "textures/overlay/new_dalek_eye.png");
+	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier(Who.MOD_ID, "textures/overlay/new_new_dalek_eye.png");
 
 	@Shadow
 	public void renderOverlay(DrawContext context, Identifier texture, float opacity)  {}
