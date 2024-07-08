@@ -19,7 +19,6 @@ public class DalekBeamEntity extends ProjectileEntity {
 
     @Override
     protected void initDataTracker() {
-
     }
 
     @Override
@@ -27,7 +26,6 @@ public class DalekBeamEntity extends ProjectileEntity {
         super.tick();
 
         HitResult hitResult = ProjectileUtil.getCollision(this, this::canHit);
-
         boolean isInPortal = false;
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
@@ -37,10 +35,9 @@ public class DalekBeamEntity extends ProjectileEntity {
                 isInPortal = true;
             } else if (blockState.isOf(Blocks.END_GATEWAY)) {
                 BlockEntity blockEntity = this.world.getBlockEntity(blockPos);
-                if (blockEntity instanceof EndGatewayBlockEntity && EndGatewayBlockEntity.canTeleport(this)) {
-                    EndGatewayBlockEntity.tryTeleportingEntity(this.world, blockPos, blockState, this, (EndGatewayBlockEntity)blockEntity);
+                if (blockEntity instanceof EndGatewayBlockEntity endGateway && EndGatewayBlockEntity.canTeleport(this)) {
+                    EndGatewayBlockEntity.tryTeleportingEntity(this.world, blockPos, blockState, this, endGateway);
                 }
-
                 isInPortal = true;
             }
         }
