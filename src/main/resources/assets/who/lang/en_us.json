@@ -1,5 +1,7 @@
 {
     "entity.who.tardis": "Tardis",
     "item.who.tardis": "Tardis",
-    "item.who.sonic": "Sonic"
+    "item.who.sonic": "Sonic",
+    "item.who.dalek_gunstick": "Dalek Gunstick",
+    "tab.who.who": "Who"
 }

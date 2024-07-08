@@ -9,11 +9,13 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import wiiu.mavity.who.Who;
+
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
 
 	@Unique
-	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier("textures/misc/powder_snow_outline.png");
+	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier(Who.MOD_ID, "textures/overlay/img.png");
 
 	@Shadow
 	public void renderOverlay(DrawContext context, Identifier texture, float opacity)  {}

@@ -13,8 +13,8 @@ import wiiu.mavity.who.item.WhoItems
 object WhoItemGroups {
 
     val ALL: ItemGroup = Registry.register(
-        Registries.ITEM_GROUP, Identifier(Who.MOD_ID, "dungeon_utils"),
-        FabricItemGroup.builder().displayName(Text.translatable("tab.dungeon_utils.dungeon_utils"))
+        Registries.ITEM_GROUP, Identifier(Who.MOD_ID, "who"),
+        FabricItemGroup.builder().displayName(Text.translatable("tab.who.who"))
             .icon { ItemStack(WhoItems.TARDIS) }.entries { displayContext, entries ->
                 entries.add(WhoItems.TARDIS)
                 entries.add(WhoItems.SONIC)
