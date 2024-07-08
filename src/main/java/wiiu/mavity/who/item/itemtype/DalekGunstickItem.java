@@ -26,6 +26,7 @@ public class DalekGunstickItem extends Item {
         dalekBeam.setPosition(user.getX(), user.getY() + user.getEyeHeight(user.getPose()), user.getZ());
         dalekBeam.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f,  1.5f, 0.0f);
         world.spawnEntity(dalekBeam);
-        return TypedActionResult.success(stack);
+        user.getItemCooldownManager().set(stack.getItem(), 30);
+        return TypedActionResult.success(stack, false);
     }
 }

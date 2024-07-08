@@ -24,7 +24,7 @@ public class WhoEntities {
             Registries.ENTITY_TYPE,
             new Identifier(Who.MOD_ID, "dalek_beam"),
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, DalekBeamEntity::new)
-                    .dimensions(EntityDimensions.fixed(0.3f,0.35f))
+                    .dimensions(EntityDimensions.fixed(0.45f, 0.2f))
                     .fireImmune()
                     .build()
     );
