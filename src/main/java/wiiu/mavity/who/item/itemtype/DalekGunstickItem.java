@@ -23,6 +23,7 @@ public class DalekGunstickItem extends Item {
         dalekBeam.setYaw(user.getHeadYaw());
         dalekBeam.setPitch(user.getPitch());
         dalekBeam.setOwner(user);
+        dalekBeam.setPosition(user.getX(), user.getY() + user.getEyeHeight(user.getPose()), user.getZ());
         dalekBeam.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f,  0.5f, 0.0f);
         world.spawnEntity(dalekBeam);
         return TypedActionResult.success(stack);
