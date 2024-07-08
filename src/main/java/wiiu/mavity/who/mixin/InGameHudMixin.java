@@ -24,22 +24,13 @@ public abstract class InGameHudMixin {
 	private int scaledHeight;
 
 	@Unique
-	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier(Who.MOD_ID, "textures/overlay/dalek_eyestalk_overlay.png");
+	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier(Who.MOD_ID, "textures/overlay/texture.png");
 
 	@Shadow
 	public void renderOverlay(DrawContext context, Identifier texture, float opacity)  {}
 
 	@Inject(method = "render", at = @At("HEAD"))
 	private void render(DrawContext context, float tickDelta, CallbackInfo ci) {
-		this.renderOverlayButBetter(context, DALEK_EYESTALK_OVERLAY, 5f);
-	}
-
-	@Unique
-	public final void renderOverlayButBetter(@NotNull DrawContext context, Identifier texture, float opacity) {
-		RenderSystem.disableDepthTest();
-		RenderSystem.depthMask(false);
-		context.setShaderColor(1.0f, 1.0f, 1.0f, opacity);
-		context.drawTexture(texture, 0, 0, -90, 0.0f, 0.0f, this.scaledWidth, this.scaledHeight, this.scaledWidth, this.scaledHeight);
-		context.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+		this.renderOverlay(context, DALEK_EYESTALK_OVERLAY, 0f);
 	}
 }
