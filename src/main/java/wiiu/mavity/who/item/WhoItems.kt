@@ -21,6 +21,9 @@ object WhoItems {
     @JvmField
     val SONIC = registerItem("sonic", SonicItem(FabricItemSettings().maxCount(1).maxDamage(0)))
 
+    @JvmField
+    val DALEK_GUNSTICK = registerItem("dalek_gunstick", Item(FabricItemSettings().maxCount(1).maxDamage(0)))
+
     @JvmStatic
     fun registerWhoItems() {
         Who.LOGGER.info(Who.NAME + " has registered its items.")
