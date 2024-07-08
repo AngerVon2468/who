@@ -29,6 +29,7 @@
 	"mixins": [
 		"who.mixins.json"
 	],
+	"accessWidener": "who.accesswidener",
 	"depends": {
 		"fabricloader": "*",
 		"minecraft": "~1.20.1",
