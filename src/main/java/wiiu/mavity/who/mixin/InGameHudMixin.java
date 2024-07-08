@@ -1,12 +1,8 @@
 package wiiu.mavity.who.mixin;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.util.Identifier;
-
-import org.jetbrains.annotations.NotNull;
 
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -17,14 +13,8 @@ import wiiu.mavity.who.Who;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
 
-	@Shadow
-	private int scaledWidth;
-
-	@Shadow
-	private int scaledHeight;
-
 	@Unique
-	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier(Who.MOD_ID, "textures/overlay/texture.png");
+	private final Identifier DALEK_EYESTALK_OVERLAY = new Identifier(Who.MOD_ID, "textures/overlay/new_dalek_eye.png");
 
 	@Shadow
 	public void renderOverlay(DrawContext context, Identifier texture, float opacity)  {}
