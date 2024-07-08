@@ -1,0 +1,30 @@
+package wiiu.mavity.who.item.itemtype;
+
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.World;
+
+import org.jetbrains.annotations.NotNull;
+
+import wiiu.mavity.who.entity.WhoEntities;
+import wiiu.mavity.who.entity.entitytype.DalekBeamEntity;
+
+public class DalekGunstickItem extends Item {
+
+    public DalekGunstickItem(Settings settings) {
+        super(settings);
+    }
+
+    @Override
+    public TypedActionResult<ItemStack> use(World world, @NotNull PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getStackInHand(hand);
+        DalekBeamEntity dalekBeam = WhoEntities.DALEK_BEAM.create(world);
+        dalekBeam.setYaw(user.getHeadYaw());
+        dalekBeam.setPitch(user.getPitch());
+        dalekBeam.setOwner(user);
+        dalekBeam.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f,  0.5f, 0.0f);
+        world.spawnEntity(dalekBeam);
+        return TypedActionResult.success(stack);
+    }
+}

@@ -8,6 +8,8 @@ import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
+import org.jetbrains.annotations.NotNull;
+
 import wiiu.mavity.who.Who;
 import wiiu.mavity.who.entity.entitytype.TardisEntity;
 
@@ -22,11 +24,11 @@ public class TardisEntityModel<T extends TardisEntity> extends EntityModel<Tardi
 
 	private final ModelPart tardis_main;
 
-	public TardisEntityModel(ModelPart root) {
+	public TardisEntityModel(@NotNull ModelPart root) {
 		this.tardis_main = root.getChild("tardis_main");
 	}
 
-	public static TexturedModelData getTexturedModelData() {
+	public static @NotNull TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 		ModelPartData tardis_main = modelPartData.addChild("tardis_main", ModelPartBuilder.create().uv(0, 60).cuboid(-12.0f, 0.0f, -12.0f, 24.0f, 1.0f, 24.0f, new Dilation(0.0f))

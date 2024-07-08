@@ -7,7 +7,7 @@ import net.minecraft.registry.*;
 import net.minecraft.util.Identifier;
 
 import wiiu.mavity.who.Who;
-import wiiu.mavity.who.block.entitytype.SonicModifierBlockEntity;
+import wiiu.mavity.who.block.blocktype.SonicModifierBlockEntity;
 
 public class WhoBlockEntities {
 

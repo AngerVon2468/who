@@ -1,4 +1,4 @@
-package wiiu.mavity.who.block.entitytype;
+package wiiu.mavity.who.block.blocktype;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;

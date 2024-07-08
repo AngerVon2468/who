@@ -7,8 +7,8 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.util.Identifier;
 
 import wiiu.mavity.who.entity.WhoEntities;
-import wiiu.mavity.who.entity.model.TardisEntityModel;
-import wiiu.mavity.who.entity.renderer.TardisEntityRenderer;
+import wiiu.mavity.who.entity.model.*;
+import wiiu.mavity.who.entity.renderer.*;
 import wiiu.mavity.who.item.WhoItems;
 
 public class WhoClient implements ClientModInitializer {
@@ -25,11 +25,13 @@ public class WhoClient implements ClientModInitializer {
     public static void registerEntityModelLayers() {
 
         EntityModelLayerRegistry.registerModelLayer(TardisEntityModel.LAYER_LOCATION, TardisEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(DalekBeamEntityModel.LAYER_LOCATION, DalekBeamEntityModel::getTexturedModelData);
     }
 
     public static void registerEntityRenderers() {
 
         EntityRendererRegistry.register(WhoEntities.TARDIS, TardisEntityRenderer::new);
+        EntityRendererRegistry.register(WhoEntities.DALEK_BEAM, DalekBeamEntityRenderer::new);
     }
 
     public static void registerCustomModelPredicateProviders() {

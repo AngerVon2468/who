@@ -7,7 +7,7 @@ import net.minecraft.registry.*;
 import net.minecraft.util.Identifier;
 
 import wiiu.mavity.who.Who;
-import wiiu.mavity.who.entity.entitytype.TardisEntity;
+import wiiu.mavity.who.entity.entitytype.*;
 
 public class WhoEntities {
 
@@ -15,6 +15,15 @@ public class WhoEntities {
             Registries.ENTITY_TYPE,
             new Identifier(Who.MOD_ID, "tardis"),
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, TardisEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.5f,3.2f))
+                    .fireImmune()
+                    .build()
+    );
+
+    public static final EntityType<DalekBeamEntity> DALEK_BEAM = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(Who.MOD_ID, "dalek_beam"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, DalekBeamEntity::new)
                     .dimensions(EntityDimensions.fixed(1.5f,3.2f))
                     .fireImmune()
                     .build()
