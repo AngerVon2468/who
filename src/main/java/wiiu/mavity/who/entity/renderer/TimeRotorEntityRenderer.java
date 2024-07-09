@@ -31,8 +31,8 @@ public class TimeRotorEntityRenderer extends EntityRenderer<TimeRotorEntity> {
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(-timeRotor.getPitch()));
         // Calculate the current offset in the y value
         double offset = Math.sin((timeRotor.getWorld().getTime() + tickDelta) / 8.0) / 4.0;
-        // Move the item
-        matrices.translate(0, 0.25 + offset, 0);
+        // Move the model
+        matrices.translate(0, -0.23 + offset, 0);
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.entityModel.getLayer(getTexture(timeRotor)));
         this.entityModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
     }

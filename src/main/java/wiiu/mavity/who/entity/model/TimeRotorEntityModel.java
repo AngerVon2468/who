@@ -24,8 +24,8 @@ public class TimeRotorEntityModel<T extends TimeRotorEntity> extends EntityModel
 	public static @NotNull TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData time_rotor = modelPartData.addChild("time_rotor", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, 0.0F, -8.0F, 16.0F, 14.0F, 16.0F, new Dilation(0.0F))
-		.uv(0, 46).cuboid(-5.0F, 0.0F, -5.0F, 10.0F, 8.0F, 10.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		ModelPartData time_rotor = modelPartData.addChild("time_rotor", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0f, 0.0f, -8.0f, 16.0f, 14.0f, 16.0f, new Dilation(0.0f))
+		.uv(0, 46).cuboid(-5.0f, 0.0f, -5.0f, 10.0f, 8.0f, 10.0f, new Dilation(0.0f)), ModelTransform.pivot(0.0f, 0.0f, 0.0f));
 		return TexturedModelData.of(modelData, 64, 64);
 	}
 
