@@ -1,13 +1,15 @@
 package wiiu.mavity.who;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
 
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.util.Identifier;
 
-import wiiu.mavity.who.block.WhoBlockEntities;
+import wiiu.mavity.who.block.*;
 import wiiu.mavity.who.block.blocktype.TimeRotorBlockEntityRenderer;
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.model.*;
@@ -23,18 +25,22 @@ public class WhoClient implements ClientModInitializer {
         WhoClient.registerEntityModelLayers();
         WhoClient.registerEntityRenderers();
         WhoClient.registerCustomModelPredicateProviders();
+
+        BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TIME_ROTOR, RenderLayer.getCutout());
     }
 
     public static void registerEntityModelLayers() {
 
         EntityModelLayerRegistry.registerModelLayer(TardisEntityModel.LAYER_LOCATION, TardisEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(DalekBeamEntityModel.LAYER_LOCATION, DalekBeamEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(TimeRotorEntityModel.LAYER_LOCATION, TimeRotorEntityModel::getTexturedModelData);
     }
 
     public static void registerEntityRenderers() {
 
         EntityRendererRegistry.register(WhoEntities.TARDIS, TardisEntityRenderer::new);
         EntityRendererRegistry.register(WhoEntities.DALEK_BEAM, DalekBeamEntityRenderer::new);
+        EntityRendererRegistry.register(WhoEntities.TIME_ROTOR, TimeRotorEntityRenderer::new);
         BlockEntityRendererFactories.register(WhoBlockEntities.TIME_ROTOR_ENTITY, TimeRotorBlockEntityRenderer::new);
     }
 

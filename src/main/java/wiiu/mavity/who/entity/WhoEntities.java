@@ -29,6 +29,15 @@ public class WhoEntities {
                     .build()
     );
 
+    public static final EntityType<TimeRotorEntity> TIME_ROTOR = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(Who.MOD_ID, "time_rotor"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MISC, TimeRotorEntity::new)
+                    .dimensions(EntityDimensions.fixed(1f, 0.8f))
+                    .fireImmune()
+                    .build()
+    );
+
     public static void registerWhoEntities() {
         Who.LOGGER.info(Who.NAME + " has registered its entities.");
     }
