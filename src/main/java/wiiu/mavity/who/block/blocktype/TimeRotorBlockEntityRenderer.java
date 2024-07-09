@@ -1,9 +1,9 @@
 package wiiu.mavity.who.block.blocktype;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.*;
@@ -13,9 +13,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class TimeRotorBlockEntityRenderer implements BlockEntityRenderer<TimeRotorBlockEntity> {
 
-    private static final ItemStack stack = new ItemStack(Items.JUKEBOX, 1);
+    private static final ItemStack STACK = new ItemStack(Items.JUKEBOX, 1);
 
-    public TimeRotorBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+    private final ItemRenderer itemRenderer;
+
+    public TimeRotorBlockEntityRenderer(BlockEntityRendererFactory. @NotNull Context ctx) {
+        itemRenderer = ctx.getItemRenderer();
     }
 
     @Override
@@ -30,7 +33,7 @@ public class TimeRotorBlockEntityRenderer implements BlockEntityRenderer<TimeRot
         // Rotate the item
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((blockEntity.getWorld().getTime() + tickDelta) * 4));
         int lightAbove = WorldRenderer.getLightmapCoordinates(blockEntity.getWorld(), blockEntity.getPos().up());
-        MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.FIXED, lightAbove, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
+        this.itemRenderer.renderItem(STACK, ModelTransformationMode.GROUND, lightAbove, overlay, matrices, vertexConsumers, blockEntity.getWorld(), 0);
 
         // Mandatory call after GL calls
         matrices.pop();
