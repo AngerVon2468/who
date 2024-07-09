@@ -11,6 +11,10 @@ import org.jetbrains.annotations.NotNull;
 import wiiu.mavity.who.Who;
 import wiiu.mavity.who.entity.entitytype.DalekBeamEntity;
 
+/**
+ * {@link TimeRotorEntityModel<T>}<br>
+ * This link is to avoid a stupid warning that I can't be stuffed to remove.
+ */
 public class DalekBeamEntityModel<T extends DalekBeamEntity> extends EntityModel<DalekBeamEntity> {
 
 	public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new Identifier(Who.MOD_ID, "dalek_beam"), "main");
@@ -24,7 +28,7 @@ public class DalekBeamEntityModel<T extends DalekBeamEntity> extends EntityModel
 	public static @NotNull TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
-		ModelPartData dalek_beam_main = modelPartData.addChild("dalek_beam_main", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0F, 0.0F, -4.0F, 2.0F, 2.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		ModelPartData dalek_beam_main = modelPartData.addChild("dalek_beam_main", ModelPartBuilder.create().uv(0, 0).cuboid(-1.0f, 0.0f, -4.0f, 2.0f, 2.0f, 8.0f, new Dilation(0.0f)), ModelTransform.pivot(0.0f, 0.0f, 0.0f));
 		return TexturedModelData.of(modelData, 32, 32);
 	}
 

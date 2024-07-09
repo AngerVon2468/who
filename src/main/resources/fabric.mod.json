@@ -12,7 +12,7 @@
 		"issues": "https://github.com/AngerVon2468/who/issues",
 		"sources": "https://github.com/AngerVon2468/who"
 	},
-	"license": "Unlicense",
+	"license": "All Rights Reserved",
 	"icon": "assets/who/icon.png",
 	"environment": "*",
 	"entrypoints": {
