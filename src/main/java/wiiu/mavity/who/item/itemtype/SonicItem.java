@@ -49,12 +49,28 @@ public class SonicItem extends Item {
 
             } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.colour.orange")) {
 
-                stack.removeSubNbt("who.sonic.colour.orange");
+                NbtUtil.setNbt(stack, "who.sonic.blue_2", 1);
+
+            } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.blue_2")) {
+
+                NbtUtil.setNbt(stack, "who.sonic.green_2", 1);
+
+            } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.green_2")) {
+
+                NbtUtil.setNbt(stack, "who.sonic.purple_2", 1);
+
+            } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.purple_2")) {
+
+                NbtUtil.setNbt(stack, "who.sonic.orange_2", 1);
+
+            } else if (user.isSneaking() && stack.getNbt().contains("who.sonic.orange_2")) {
+
+                stack.removeSubNbt("who.sonic.orange_2");
 
             }
         }
 
-        return TypedActionResult.success(stack);
+        return TypedActionResult.consume(stack);
     }
 
     @Override
@@ -91,7 +107,7 @@ public class SonicItem extends Item {
             }
         }
 
-        return ActionResult.SUCCESS;
+        return ActionResult.CONSUME;
     }
 
     public void openDoor(World world, @NotNull BlockState state, BlockPos pos, boolean open) {

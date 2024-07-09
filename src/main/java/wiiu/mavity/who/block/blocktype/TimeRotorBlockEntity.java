@@ -13,22 +13,18 @@ import org.jetbrains.annotations.*;
 
 import wiiu.mavity.who.block.WhoBlockEntities;
 
-public class SonicModifierBlockEntity extends BlockEntity {
+public class TimeRotorBlockEntity extends BlockEntity {
 
-    private int number = 0;
-
-    public SonicModifierBlockEntity(BlockPos pos, BlockState state) {
-        super(WhoBlockEntities.SONIC_MODIFIER_ENTITY, pos, state);
+    public TimeRotorBlockEntity(BlockPos pos, BlockState state) {
+        super(WhoBlockEntities.TIME_ROTOR_ENTITY, pos, state);
     }
 
     @Override
     protected void writeNbt(@NotNull NbtCompound nbt) {
-        nbt.putInt("who.sonic.value", this.number);
     }
 
     @Override
     public void readNbt(@NotNull NbtCompound nbt) {
-        this.number = nbt.getInt("who.sonic.value");
     }
 
     @Nullable
@@ -42,6 +38,6 @@ public class SonicModifierBlockEntity extends BlockEntity {
         return createNbt();
     }
 
-    public static void serverTick(World world, BlockPos pos, BlockState state, SonicModifierBlockEntity blockEntity) {
+    public static void serverTick(World world, BlockPos pos, BlockState state, TimeRotorBlockEntity blockEntity) {
     }
 }

@@ -7,14 +7,14 @@ import net.minecraft.registry.*;
 import net.minecraft.util.Identifier;
 
 import wiiu.mavity.who.Who;
-import wiiu.mavity.who.block.blocktype.SonicModifierBlockEntity;
+import wiiu.mavity.who.block.blocktype.TimeRotorBlockEntity;
 
 public class WhoBlockEntities {
 
-    public static final BlockEntityType<SonicModifierBlockEntity> SONIC_MODIFIER_ENTITY = Registry.register(
+    public static final BlockEntityType<TimeRotorBlockEntity> TIME_ROTOR_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
-            new Identifier(Who.MOD_ID, "sonic_modifier_entity"),
-            FabricBlockEntityTypeBuilder.create(SonicModifierBlockEntity::new, WhoBlocks.SONIC_MODIFIER).build()
+            new Identifier(Who.MOD_ID, "time_rotor_entity"),
+            FabricBlockEntityTypeBuilder.create(TimeRotorBlockEntity::new, WhoBlocks.TIME_ROTOR).build()
     );
 
     public static void registerWhoBlockEntities() {

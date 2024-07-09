@@ -1,8 +1,8 @@
 {
 	"credit": "EpicVon2468 and Blockbench",
 	"textures": {
-		"0": "who:item/sonic_base_blue",
-		"particle": "who:item/sonic_base_blue"
+		"0": "who:item/sonic/sonic_base/sonic_base_blue",
+		"particle": "who:item/sonic/sonic_base/sonic_base_blue"
 	},
 	"elements": [
 		{
@@ -153,19 +153,43 @@
 			"predicate": {
 				"green": 1
 			},
-			"model": "who:item/sonic/sonic_base_green"
+			"model": "who:item/sonic/sonic_base/sonic_base_green"
 		},
 		{
 			"predicate": {
 				"purple": 1
 			},
-			"model": "who:item/sonic/sonic_base_purple"
+			"model": "who:item/sonic/sonic_base/sonic_base_purple"
 		},
 		{
 			"predicate": {
 				"orange": 1
 			},
-			"model": "who:item/sonic/sonic_base_orange"
+			"model": "who:item/sonic/sonic_base/sonic_base_orange"
+		},
+		{
+			"predicate": {
+				"blue_2": 1
+			},
+			"model": "who:item/sonic/sonic_2/sonic_2_blue"
+		},
+		{
+			"predicate": {
+				"green_2": 1
+			},
+			"model": "who:item/sonic/sonic_2/sonic_2_green"
+		},
+		{
+			"predicate": {
+				"purple_2": 1
+			},
+			"model": "who:item/sonic/sonic_2/sonic_2_purple"
+		},
+		{
+			"predicate": {
+				"orange_2": 1
+			},
+			"model": "who:item/sonic/sonic_2/sonic_2_orange"
 		}
 	]
 }

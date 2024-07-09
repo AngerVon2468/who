@@ -27,10 +27,8 @@ public class Who implements ModInitializer {
 		WhoEntities.registerWhoEntities();
 		WhoItems.registerWhoItems();
 		WhoItemGroups.registerWhoItemGroups();
-		/*
 		WhoBlocks.registerWhoBlocks();
 		WhoBlockEntities.registerWhoBlockEntities();
-		*/
 		/*
 		FabricDefaultAttributeRegistry.register(WhoEntities.TARDIS, TardisEntity.createLivingAttributes());
 		*/

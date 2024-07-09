@@ -9,24 +9,24 @@ import org.jetbrains.annotations.NotNull;
 
 import wiiu.mavity.who.block.WhoBlockEntities;
 
-public class SonicModifierBlock extends BlockWithEntity {
+public class TimeRotorBlock extends BlockWithEntity {
 
-    public SonicModifierBlock(Settings settings) {
+    public TimeRotorBlock(Settings settings) {
         super(settings);
     }
 
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new SonicModifierBlockEntity(pos, state);
+        return new TimeRotorBlockEntity(pos, state);
     }
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : checkType(type, WhoBlockEntities.SONIC_MODIFIER_ENTITY, SonicModifierBlockEntity::serverTick);
+        return world.isClient ? null : checkType(type, WhoBlockEntities.TIME_ROTOR_ENTITY, TimeRotorBlockEntity::serverTick);
     }
 }

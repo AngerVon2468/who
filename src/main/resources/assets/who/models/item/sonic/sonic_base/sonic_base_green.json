@@ -1,8 +1,8 @@
 {
 	"credit": "EpicVon2468 and Blockbench",
 	"textures": {
-		"0": "who:item/sonic_base_green",
-		"particle": "who:item/sonic_base_green"
+		"0": "who:item/sonic/sonic_base/sonic_base_green",
+		"particle": "who:item/sonic/sonic_base/sonic_base_green"
 	},
 	"elements": [
 		{

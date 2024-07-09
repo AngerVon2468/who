@@ -9,7 +9,7 @@ import net.minecraft.registry.*
 import net.minecraft.util.Identifier
 
 import wiiu.mavity.who.Who
-import wiiu.mavity.who.block.blocktype.SonicModifierBlock
+import wiiu.mavity.who.block.blocktype.TimeRotorBlock
 
 object WhoBlocks {
 
@@ -25,8 +25,8 @@ object WhoBlocks {
     }
 
     @JvmField
-    val SONIC_MODIFIER = registerBlock("sonic_modifier",
-        SonicModifierBlock(
+    val TIME_ROTOR = registerBlock("time_rotor",
+        TimeRotorBlock(
             FabricBlockSettings.create().nonOpaque()
         )
     )
