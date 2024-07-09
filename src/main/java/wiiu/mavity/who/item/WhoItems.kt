@@ -22,7 +22,10 @@ object WhoItems {
     val SONIC = registerItem("sonic", SonicItem(FabricItemSettings().maxCount(1).maxDamage(0)))
 
     @JvmField
-    val DALEK_GUNSTICK = registerItem("dalek_gunstick", DalekGunstickItem(FabricItemSettings().maxCount(1).maxDamage(0)))
+    val DALEK_GUNSTICK = registerItem("dalek_gunstick", DalekGunstickItem(FabricItemSettings().maxCount(1).maxDamage(500)))
+
+    @JvmField
+    val SHORT_TIME_ROTOR = registerItem("short_time_rotor", ShortTimeRotorItem(FabricItemSettings().maxCount(1).maxDamage(0)))
 
     @JvmStatic
     fun registerWhoItems() {

@@ -36,6 +36,7 @@ public class TardisItem extends Item {
         World world = context.getWorld();
         if (!world.isClient()) {
             PlayerEntity player = context.getPlayer();
+            ItemStack stack = player.getStackInHand(player.getActiveHand());
 
             TardisEntity tardisEntity = WhoEntities.TARDIS.create(world);
             /*
@@ -67,6 +68,11 @@ public class TardisItem extends Item {
             tardisEntity.setTardisOwner(player.getEntityName());
             tardisEntity.setYaw(-player.getHeadYaw());
             world.spawnEntity(tardisEntity);
+            if (!player.isCreative()) {
+
+                stack.decrement(1);
+
+            }
         }
 
         return ActionResult.CONSUME;

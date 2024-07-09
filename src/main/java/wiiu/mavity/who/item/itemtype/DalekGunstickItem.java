@@ -17,16 +17,25 @@ public class DalekGunstickItem extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, @NotNull PlayerEntity user, Hand hand) {
+    public TypedActionResult<ItemStack> use(@NotNull World world, @NotNull PlayerEntity user, Hand hand) {
+
         ItemStack stack = user.getStackInHand(hand);
-        DalekBeamEntity dalekBeam = WhoEntities.DALEK_BEAM.create(world);
-        dalekBeam.setYaw(user.getHeadYaw());
-        dalekBeam.setPitch(user.getPitch());
-        dalekBeam.setOwner(user);
-        dalekBeam.setPosition(user.getX(), user.getY() + user.getEyeHeight(user.getPose()), user.getZ());
-        dalekBeam.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f,  1.5f, 0.0f);
-        world.spawnEntity(dalekBeam);
-        user.getItemCooldownManager().set(stack.getItem(), 30);
+        if (!world.isClient()) {
+
+            DalekBeamEntity dalekBeam = WhoEntities.DALEK_BEAM.create(world);
+            dalekBeam.setYaw(user.getHeadYaw());
+            dalekBeam.setPitch(user.getPitch());
+            dalekBeam.setOwner(user);
+            dalekBeam.setPosition(user.getX(), user.getY() + user.getEyeHeight(user.getPose()), user.getZ());
+            dalekBeam.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f,  1.5f, 0.0f);
+            world.spawnEntity(dalekBeam);
+            stack.damage(1, user, (p) -> {
+                p.sendToolBreakStatus(user.getActiveHand());
+            });
+            user.getItemCooldownManager().set(stack.getItem(), 30);
+
+        }
+
         return TypedActionResult.success(stack, false);
     }
 }
