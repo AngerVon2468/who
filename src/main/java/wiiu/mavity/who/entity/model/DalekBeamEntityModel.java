@@ -2,11 +2,10 @@ package wiiu.mavity.who.entity.model;
 
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.MatrixStack;
-
 import net.minecraft.util.Identifier;
+
 import org.jetbrains.annotations.NotNull;
 
 import wiiu.mavity.who.Who;
@@ -32,6 +31,7 @@ public class DalekBeamEntityModel<T extends DalekBeamEntity> extends EntityModel
 	@Override
 	public void setAngles(DalekBeamEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 	}
+
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
 		dalek_beam_main.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
