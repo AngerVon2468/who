@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "who:block/time_rotor" }
+        "": { "model": "who:block/wiiu" }
     }
 }

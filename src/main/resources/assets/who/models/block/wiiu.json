@@ -1,0 +1,10 @@
+{
+    "loader": "forge:obj",
+    "porting_lib:loader": "porting_lib:obj",
+    "flip_v": true,
+    "model": "who:models/obj/wiiu.obj",
+    "textures": {
+        "texture0": "who:block/wiiu",
+        "particle": "who:block/wiiu"
+    }
+}

@@ -19,6 +19,7 @@ repositories {
 	maven { url = "https://api.modrinth.com/maven" }
 	maven { url = "https://maven.ladysnake.org/releases" }
 	maven { url = "https://maven.terraformersmc.com/releases/" }
+	maven { url = "https://mvn.devos.one/releases/" }
 }
 
 dependencies {
@@ -44,6 +45,9 @@ dependencies {
 	modImplementation "com.github.Virtuoel:Pehkui:${project.pehkui_version}", {
 		exclude group: "net.fabricmc.fabric-api"
 	}
+
+	// Porting Lib
+	modImplementation "io.github.fabricators_of_create.Porting-Lib:${project.porting_lib_module}:${project.porting_lib_version}"
 }
 
 processResources {
