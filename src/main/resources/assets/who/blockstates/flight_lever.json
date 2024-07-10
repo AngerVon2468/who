@@ -1,18 +1,18 @@
 {
     "variants": {
         "facing=north,pulled=false": {
-            "model": "who:block/flight_rotor_pulled"
+            "model": "who:block/flight_rotor"
         },
         "facing=south,pulled=false": {
-            "model": "who:block/flight_rotor_pulled",
+            "model": "who:block/flight_rotor",
             "y": 180
         },
         "facing=west,pulled=false": {
-            "model": "who:block/flight_rotor_pulled",
+            "model": "who:block/flight_rotor",
             "y": 270
         },
         "facing=east,pulled=false": {
-            "model": "who:block/flight_rotor_pulled",
+            "model": "who:block/flight_rotor",
             "y": 90
         },
         "facing=north,pulled=true": {
