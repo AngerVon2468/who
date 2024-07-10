@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "pulled=true": {
+            "model": "who:block/flight_rotor_pulled"
+        },
+        "pulled=false": {
+            "model": "who:block/flight_rotor"
+        }
+    }
+}
