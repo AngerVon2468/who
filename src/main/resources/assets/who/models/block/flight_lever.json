@@ -1,0 +1,10 @@
+{
+    "loader": "forge:obj",
+    "porting_lib:loader": "porting_lib:obj",
+    "flip_v": true,
+    "model": "who:models/obj/flight_lever.obj",
+    "textures": {
+        "texture0": "who:block/flight_lever",
+        "particle": "who:block/flight_lever"
+    }
+}
