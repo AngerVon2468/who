@@ -9,7 +9,7 @@ import net.minecraft.registry.*
 import net.minecraft.util.Identifier
 
 import wiiu.mavity.who.Who
-import wiiu.mavity.who.block.blocktype.TimeRotorBlock
+import wiiu.mavity.who.block.blocktype.*
 
 object WhoBlocks {
 
@@ -27,6 +27,13 @@ object WhoBlocks {
     @JvmField
     val TIME_ROTOR = registerBlock("time_rotor",
         TimeRotorBlock(
+            FabricBlockSettings.create().nonOpaque()
+        )
+    )
+
+    @JvmField
+    val FLIGHT_LEVER = registerBlock("flight_lever",
+        FlightLeverBlock(
             FabricBlockSettings.create().nonOpaque()
         )
     )

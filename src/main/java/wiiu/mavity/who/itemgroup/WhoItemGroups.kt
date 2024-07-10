@@ -22,6 +22,7 @@ object WhoItemGroups {
                 entries.add(WhoItems.DALEK_GUNSTICK)
                 entries.add(WhoItems.SHORT_TIME_ROTOR)
                 entries.add(WhoBlocks.TIME_ROTOR)
+                entries.add(WhoBlocks.FLIGHT_LEVER)
             }.build()
     )
 
