@@ -8,5 +8,7 @@
     "item.who.short_time_rotor": "Short Time Rotor",
     "block.who.time_rotor": "Time Rotor (broken)",
     "block.who.flight_lever": "Flight Lever",
-    "tab.who.who": "Who"
+    "tab.who.who": "Who",
+    "who.subtitle.tardis_demat": "Tardis De-Materialises",
+    "who.subtitle.tardis_remat": "Tardis Re-Materialises"
 }
