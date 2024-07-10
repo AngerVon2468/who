@@ -29,9 +29,7 @@ public class DalekGunstickItem extends Item {
             dalekBeam.setPosition(user.getX(), user.getY() + user.getEyeHeight(user.getPose()), user.getZ());
             dalekBeam.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f,  1.5f, 0.0f);
             world.spawnEntity(dalekBeam);
-            stack.damage(1, user, (p) -> {
-                p.sendToolBreakStatus(user.getActiveHand());
-            });
+            stack.damage(1, user, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
             user.getItemCooldownManager().set(stack.getItem(), 30);
 
         }

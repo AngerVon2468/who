@@ -34,7 +34,7 @@ public class DimensionalUtil {
 
     }
 
-    public static void createTardisInterior(ServerWorld world) {
+    public static void createTardisInterior(@NotNull ServerWorld world) {
 
         BlockPos initialPos = new BlockPos(0, 63, 0);
         BlockState initialState = world.getBlockState(initialPos);

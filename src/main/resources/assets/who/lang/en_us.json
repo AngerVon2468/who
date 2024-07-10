@@ -1,9 +1,11 @@
 {
     "entity.who.tardis": "Tardis",
+    "entity.who.dalek_beam": "Dalek Beam",
+    "entity.who.time_rotor": "Time Rotor",
     "item.who.tardis": "Tardis",
     "item.who.sonic": "Sonic",
     "item.who.dalek_gunstick": "Dalek Gunstick",
     "item.who.short_time_rotor": "Short Time Rotor",
-    "block.who.time_rotor": "Time Rotor",
+    "block.who.time_rotor": "Time Rotor (broken)",
     "tab.who.who": "Who"
 }
