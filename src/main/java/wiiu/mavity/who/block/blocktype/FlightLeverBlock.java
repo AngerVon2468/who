@@ -1,13 +1,19 @@
 package wiiu.mavity.who.block.blocktype;
 
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.*;
+import net.minecraft.world.World;
 
 import org.jetbrains.annotations.*;
+
+import wiiu.mavity.who.sound.WhoSounds;
 
 public class FlightLeverBlock extends Block {
 
@@ -22,7 +28,7 @@ public class FlightLeverBlock extends Block {
 
     @Override
     public @Nullable BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing()).with(PULLED, false);
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite()).with(PULLED, false);
     }
 
     @Override
@@ -40,5 +46,24 @@ public class FlightLeverBlock extends Block {
     @Override
     protected void appendProperties(@NotNull StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, PULLED);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public ActionResult onUse(@NotNull BlockState state, @NotNull World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!world.isClient()) {
+            if (!state.get(PULLED)) {
+
+                world.playSound(null, pos, WhoSounds.TARDIS_DEMAT, SoundCategory.MUSIC);
+                world.setBlockState(pos, state.with(PULLED, true));
+
+            } else {
+
+                world.playSound(null, pos, WhoSounds.TARDIS_REMAT, SoundCategory.MUSIC);
+                world.setBlockState(pos, state.with(PULLED, false));
+
+            }
+        }
+        return ActionResult.CONSUME;
     }
 }

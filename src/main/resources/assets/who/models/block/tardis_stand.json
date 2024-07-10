@@ -1,0 +1,10 @@
+{
+    "loader": "forge:obj",
+    "porting_lib:loader": "porting_lib:obj",
+    "flip_v": true,
+    "model": "who:models/obj/tardis_stand.obj",
+    "textures": {
+        "texture0": "who:block/side_console",
+        "particle": "who:block/side_console"
+    }
+}

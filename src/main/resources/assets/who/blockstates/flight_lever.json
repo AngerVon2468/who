@@ -1,33 +1,33 @@
 {
     "variants": {
         "facing=north,pulled=false": {
-            "model": "who:block/flight_rotor"
+            "model": "who:block/flight_lever"
         },
         "facing=south,pulled=false": {
-            "model": "who:block/flight_rotor",
+            "model": "who:block/flight_lever",
             "y": 180
         },
         "facing=west,pulled=false": {
-            "model": "who:block/flight_rotor",
+            "model": "who:block/flight_lever",
             "y": 270
         },
         "facing=east,pulled=false": {
-            "model": "who:block/flight_rotor",
+            "model": "who:block/flight_lever",
             "y": 90
         },
         "facing=north,pulled=true": {
-            "model": "who:block/flight_rotor_pulled"
+            "model": "who:block/flight_lever_pulled"
         },
         "facing=south,pulled=true": {
-            "model": "who:block/flight_rotor_pulled",
+            "model": "who:block/flight_lever_pulled",
             "y": 180
         },
         "facing=west,pulled=true": {
-            "model": "who:block/flight_rotor_pulled",
+            "model": "who:block/flight_lever_pulled",
             "y": 270
         },
         "facing=east,pulled=true": {
-            "model": "who:block/flight_rotor_pulled",
+            "model": "who:block/flight_lever_pulled",
             "y": 90
         }
     }
