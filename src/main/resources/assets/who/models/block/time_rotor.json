@@ -2,9 +2,9 @@
     "loader": "forge:obj",
     "porting_lib:loader": "porting_lib:obj",
     "flip_v": true,
-    "model": "who:models/obj/time_rotor.obj",
+    "model": "who:models/obj/tardisheart.obj",
     "textures": {
-        "texture0": "who:block/time_rotor_obj",
-        "particle": "who:block/time_rotor_obj"
+        "texture0": "who:block/tardiscore",
+        "particle": "who:block/tardiscore"
     }
 }
