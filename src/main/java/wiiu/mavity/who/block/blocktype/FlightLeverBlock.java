@@ -67,7 +67,7 @@ public class FlightLeverBlock extends Block {
 
             }
         }
-        return ActionResult.CONSUME;
+        return ActionResult.success(true);
     }
 
     @Override
