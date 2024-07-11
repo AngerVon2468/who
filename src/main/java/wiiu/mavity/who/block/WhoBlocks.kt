@@ -27,7 +27,7 @@ object WhoBlocks {
     @JvmField
     val TIME_ROTOR = registerBlock("time_rotor",
         TimeRotorBlock(
-            FabricBlockSettings.create().nonOpaque()
+            FabricBlockSettings.create().nonOpaque().luminance(9)
         )
     )
 
@@ -42,6 +42,13 @@ object WhoBlocks {
     val ORANGE_LIGHT = registerBlock("orangelight",
         OrangeLightBlock(
             FabricBlockSettings.create().nonOpaque().luminance(7)
+        )
+    )
+
+    @JvmField
+    val TARDIS_STAND = registerBlock("tardis_stand",
+        TardisStandBlock(
+            FabricBlockSettings.create().nonOpaque().luminance(5)
         )
     )
 

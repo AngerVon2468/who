@@ -13,6 +13,7 @@ import wiiu.mavity.who.item.WhoItems
 
 object WhoItemGroups {
 
+    @Suppress("unused")
     val ALL: ItemGroup = Registry.register(
         Registries.ITEM_GROUP, Identifier(Who.MOD_ID, "who"),
         FabricItemGroup.builder().displayName(Text.translatable("tab.who.who"))
@@ -23,6 +24,8 @@ object WhoItemGroups {
                 entries.add(WhoItems.SHORT_TIME_ROTOR)
                 entries.add(WhoBlocks.TIME_ROTOR)
                 entries.add(WhoBlocks.FLIGHT_LEVER)
+                entries.add(WhoBlocks.ORANGE_LIGHT)
+                entries.add(WhoBlocks.TARDIS_STAND)
             }.build()
     )
 

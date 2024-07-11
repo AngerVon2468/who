@@ -9,6 +9,9 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.*;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import org.jetbrains.annotations.*;
@@ -65,5 +68,23 @@ public class FlightLeverBlock extends Block {
             }
         }
         return ActionResult.CONSUME;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getOutlineShape(@NotNull BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(FACING) == Direction.NORTH || state.get(FACING) == Direction.SOUTH) {
+
+            return Block.createCuboidShape(2.5, 0, 5, 13.5, 3, 11);
+
+        } else if (state.get(FACING) == Direction.WEST || state.get(FACING) == Direction.EAST) {
+
+            return Block.createCuboidShape(5, 0, 2.5, 11, 3, 13.5);
+
+        } else {
+
+            return VoxelShapes.empty();
+
+        }
     }
 }
