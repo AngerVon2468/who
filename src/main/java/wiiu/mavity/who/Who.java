@@ -10,7 +10,6 @@ import wiiu.mavity.who.block.*;
 import wiiu.mavity.who.itemgroup.WhoItemGroups;
 import wiiu.mavity.who.sound.WhoSounds;
 
-// TODO: Davros chair && || Dalek cosplay of some sort
 public class Who implements ModInitializer {
 
 	public static final String NAME = "Who";

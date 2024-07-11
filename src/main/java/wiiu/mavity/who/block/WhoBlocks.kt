@@ -38,6 +38,13 @@ object WhoBlocks {
         )
     )
 
+    @JvmField
+    val ORANGE_LIGHT = registerBlock("orangelight",
+        OrangeLightBlock(
+            FabricBlockSettings.create().nonOpaque()
+        )
+    )
+
     @JvmStatic
     fun registerWhoBlocks() {
         Who.LOGGER.info(Who.NAME + " has registered its blocks.")
