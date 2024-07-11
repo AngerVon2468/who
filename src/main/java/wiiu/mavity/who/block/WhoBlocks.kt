@@ -41,7 +41,7 @@ object WhoBlocks {
     @JvmField
     val ORANGE_LIGHT = registerBlock("orangelight",
         OrangeLightBlock(
-            FabricBlockSettings.create().nonOpaque()
+            FabricBlockSettings.create().nonOpaque().luminance(7)
         )
     )
 

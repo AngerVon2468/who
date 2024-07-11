@@ -5,7 +5,9 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.*;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.*;
+import net.minecraft.world.BlockView;
+import net.minecraft.util.shape.*;
 
 import org.jetbrains.annotations.*;
 
@@ -38,5 +40,31 @@ public class OrangeLightBlock extends Block {
     @Override
     protected void appendProperties(@NotNull StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getOutlineShape(@NotNull BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(FACING) == Direction.NORTH) {
+
+            return Block.createCuboidShape(0, 0, 15, 16, 16, 16);
+
+        } else if (state.get(FACING) == Direction.SOUTH) {
+
+            return Block.createCuboidShape(0, 0, 0, 16, 16, 1);
+
+        } else if (state.get(FACING) == Direction.EAST) {
+
+            return Block.createCuboidShape(0, 0, 0, 1, 16, 16);
+
+        } else if (state.get(FACING) == Direction.WEST) {
+
+            return Block.createCuboidShape(15, 0, 0, 16, 16, 16);
+
+        } else {
+
+            return VoxelShapes.empty();
+
+        }
     }
 }
