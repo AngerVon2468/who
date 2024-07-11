@@ -29,6 +29,7 @@ object WhoItemGroups {
                 entries.add(WhoBlocks.TARDIS_CATWALK)
                 entries.add(WhoBlocks.TARDIS_CATWALK_PLATED)
                 entries.add(WhoBlocks.TARDIS_CATWALK_RAILS)
+                entries.add(WhoBlocks.TARDIS_CATWALK_RAILS_CORNER)
                 entries.add(WhoBlocks.TARDIS_CATWALK_STEPS)
             }.build()
     )
