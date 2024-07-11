@@ -26,6 +26,10 @@ object WhoItemGroups {
                 entries.add(WhoBlocks.FLIGHT_LEVER)
                 entries.add(WhoBlocks.ORANGE_LIGHT)
                 entries.add(WhoBlocks.TARDIS_STAND)
+                entries.add(WhoBlocks.TARDIS_CATWALK)
+                entries.add(WhoBlocks.TARDIS_CATWALK_PLATED)
+                entries.add(WhoBlocks.TARDIS_CATWALK_RAILS)
+                entries.add(WhoBlocks.TARDIS_CATWALK_STEPS)
             }.build()
     )
 

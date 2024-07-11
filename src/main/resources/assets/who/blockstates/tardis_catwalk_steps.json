@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "who:block/tardis_catwalk_steps"
+        },
+        "facing=south": {
+            "model": "who:block/tardis_catwalk_steps",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "who:block/tardis_catwalk_steps",
+            "y": 270
+        },
+        "facing=east": {
+            "model": "who:block/tardis_catwalk_steps",
+            "y": 90
+        }
+    }
+}

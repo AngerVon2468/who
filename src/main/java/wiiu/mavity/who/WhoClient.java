@@ -27,6 +27,8 @@ public class WhoClient implements ClientModInitializer {
         WhoClient.registerCustomModelPredicateProviders();
 
         BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TIME_ROTOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TARDIS_CATWALK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TARDIS_CATWALK_STEPS, RenderLayer.getCutout());
     }
 
     public static void registerEntityModelLayers() {

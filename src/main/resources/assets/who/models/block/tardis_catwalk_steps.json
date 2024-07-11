@@ -1,0 +1,67 @@
+{
+	"credit": "GarnishHat and Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "who:block/catwalkblue",
+		"particle": "who:block/catwalkblue"
+	},
+	"elements": [
+		{
+			"name": "topstep",
+			"from": [0, 15, 8],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 15, 9]},
+			"faces": {
+				"north": {"uv": [0, 4, 8, 4.5], "texture": "#0"},
+				"east": {"uv": [12, 0, 16, 0.5], "texture": "#0"},
+				"south": {"uv": [8, 0, 16, 0.5], "texture": "#0"},
+				"west": {"uv": [12, 0.5, 16, 0], "texture": "#0"},
+				"up": {"uv": [8, 4, 0, 0], "texture": "#0"},
+				"down": {"uv": [0, 8, 8, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "bottomstep",
+			"from": [0, 7, 0],
+			"to": [16, 8, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 7, 1]},
+			"faces": {
+				"north": {"uv": [8, 0, 16, 0.5], "texture": "#0"},
+				"east": {"uv": [12, 0, 16, 0.5], "texture": "#0"},
+				"south": {"uv": [0, 4, 8, 4.5], "texture": "#0"},
+				"west": {"uv": [12, 0, 16, 0.5], "texture": "#0"},
+				"up": {"uv": [0, 0, 8, 4], "texture": "#0"},
+				"down": {"uv": [0, 12, 8, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "stem",
+			"from": [7, 0, 11],
+			"to": [9, 15, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 12]},
+			"faces": {
+				"north": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"east": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"south": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"west": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"up": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"down": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "stepholder",
+			"from": [7, 5, 1],
+			"to": [9, 7, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 5, 2]},
+			"faces": {
+				"north": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"east": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"south": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"west": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"up": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"down": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"}
+			}
+		}
+	],
+	"display": {}
+}
