@@ -2,8 +2,8 @@
 	"credit": "GarnishHat and Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "who:block/catwalkblue",
-		"particle": "who:block/catwalkblue"
+		"0": "who:block/catwalkblue_corner",
+		"particle": "who:block/catwalkblue_corner"
 	},
 	"elements": [
 		{

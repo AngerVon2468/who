@@ -87,6 +87,13 @@ object WhoBlocks {
         )
     )
 
+    @JvmField
+    val TARDIS_CATWALK_STEPS_CORNER = registerBlock("tardis_catwalk_steps_corner",
+        TardisCatwalkStepsCornerBlock(
+            FabricBlockSettings.create().nonOpaque()
+        )
+    )
+
     @JvmStatic
     fun registerWhoBlocks() {
         Who.LOGGER.info(Who.NAME + " has registered its blocks.")
