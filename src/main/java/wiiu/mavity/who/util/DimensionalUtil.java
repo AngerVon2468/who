@@ -1,5 +1,7 @@
 package wiiu.mavity.who.util;
 
+import me.emafire003.dev.structureplacerapi.StructurePlacerAPI;
+
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.registry.*;
@@ -36,11 +38,12 @@ public class DimensionalUtil {
 
     public static void createTardisInterior(@NotNull ServerWorld world, int x, int z) {
 
-        BlockPos initialPos = new BlockPos(x, 63, z);
-        BlockState initialState = world.getBlockState(initialPos);
-        if (initialState.isOf(Blocks.AIR)) {
+        BlockPos pos = new BlockPos(x, 63, z);
+        BlockState initialState = world.getBlockState(pos);
+        if (initialState.isOf(Blocks.AIR) && !world.isClient()) {
 
-            world.setBlockState(initialPos, Blocks.COBBLESTONE.getDefaultState());
+            StructurePlacerAPI placer = new StructurePlacerAPI(world, new Identifier(Who.MOD_ID, "tardis_interior_one"), pos);
+            placer.loadStructure();
 
         }
 
