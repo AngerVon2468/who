@@ -8,16 +8,13 @@ import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
 
+import wiiu.mavity.who.component.WhoComponents;
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.entitytype.TardisEntity;
 
 import java.util.Random;
 
 public class TardisItem extends Item {
-
-    /*
-    public static final Predicate<LivingEntity> TARDIS_PREDICATE = entity -> entity.isAlive() && entity.isAttackable();
-    */
 
     Random random = new Random();
 
@@ -39,14 +36,6 @@ public class TardisItem extends Item {
             ItemStack stack = player.getStackInHand(player.getActiveHand());
 
             TardisEntity tardisEntity = WhoEntities.TARDIS.create(world);
-            /*
-            final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setBaseMaxDistance(Double.MAX_VALUE).setPredicate(TARDIS_PREDICATE);
-            List<TardisEntity> tardises = world.getTargets(TardisEntity.class, TARGET_PREDICATE, tardisEntity, tardisEntity.getBoundingBox().expand(Double.MAX_VALUE)).stream().toList();
-            for (TardisEntity tardis : tardises) {
-                tardisEntity.setTardises(tardisEntity.getTardises() + 1);
-                tardisEntity.setTardisId(tardisEntity.getTardises() + 1);
-            }
-            */
             if (player.getHorizontalFacing() == Direction.NORTH) {
 
                 tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() - 1);
@@ -64,7 +53,9 @@ public class TardisItem extends Item {
                 tardisEntity.setPosition(player.getX() - 1, player.getY(), player.getZ());
 
             }
-            tardisEntity.setTardisId(random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE));
+            int newValue = WhoComponents.TARDIS_IDS.get(world).getTardisIds() + 1;
+            tardisEntity.setTardisId(newValue);
+            WhoComponents.TARDIS_IDS.get(world).setTardisIds(newValue);
             tardisEntity.setTardisOwner(player.getEntityName());
             tardisEntity.setYaw(-player.getHeadYaw());
             world.spawnEntity(tardisEntity);

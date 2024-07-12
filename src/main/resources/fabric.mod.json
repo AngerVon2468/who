@@ -27,6 +27,9 @@
 		],
 		"server": [
 			"wiiu.mavity.who.WhoServer"
+		],
+		"cardinal-components": [
+			"wiiu.mavity.who.component.WhoComponents"
 		]
 	},
 	"mixins": [
@@ -38,5 +41,10 @@
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"who:tardisIds"
+		]
 	}
 }

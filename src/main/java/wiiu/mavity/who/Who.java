@@ -9,6 +9,7 @@ import wiiu.mavity.who.item.WhoItems;
 import wiiu.mavity.who.block.*;
 import wiiu.mavity.who.itemgroup.WhoItemGroups;
 import wiiu.mavity.who.sound.WhoSounds;
+import wiiu.mavity.who.util.WhoCommands;
 
 public class Who implements ModInitializer {
 
@@ -30,8 +31,6 @@ public class Who implements ModInitializer {
 		WhoBlocks.registerWhoBlocks();
 		WhoBlockEntities.registerWhoBlockEntities();
 		WhoSounds.registerWhoSounds();
-		/*
-		FabricDefaultAttributeRegistry.register(WhoEntities.TARDIS, TardisEntity.createLivingAttributes());
-		*/
+		WhoCommands.getTardisIds();
 	}
 }
