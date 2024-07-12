@@ -32,22 +32,27 @@ dependencies {
 
 	// Midnight Lib
 	modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
+	include "maven.modrinth:midnightlib:${project.midnightlib_version}"
 
 	// Mod menu
-	modImplementation("com.terraformersmc:modmenu:${project.mod_menu_version}") {
+	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}", {
 		exclude group: "net.fabricmc.fabric-api"
 	}
+	include "com.terraformersmc:modmenu:${project.mod_menu_version}"
 
 	// Trinkets
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
+	include "dev.emi:trinkets:${project.trinkets_version}"
 
 	// Pehkui
 	modImplementation "com.github.Virtuoel:Pehkui:${project.pehkui_version}", {
 		exclude group: "net.fabricmc.fabric-api"
 	}
+	include "com.github.Virtuoel:Pehkui:${project.pehkui_version}"
 
 	// Porting Lib
 	modImplementation "io.github.fabricators_of_create.Porting-Lib:${project.porting_lib_module}:${project.porting_lib_version}"
+	include "io.github.fabricators_of_create.Porting-Lib:${project.porting_lib_module}:${project.porting_lib_version}"
 
 	// Cardinal Components API
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
