@@ -22,7 +22,7 @@ public class DimensionalUtil {
 
         RegistryKey<World> targetDimension = RegistryKey.of(RegistryKeys.WORLD, new Identifier(modId, dimensionName));
         ServerWorld targetServerWorld = serverPlayer.getServer().getWorld(targetDimension);
-        serverPlayer.teleport(targetServerWorld, x + 0.5, 100, z + 0.5, serverPlayer.getYaw(), serverPlayer.getPitch());
+        serverPlayer.teleport(targetServerWorld, x + 0.5, 64, z + 0.5, serverPlayer.getYaw(), serverPlayer.getPitch());
         Who.LOGGER.info("Changed player dimension.");
 
     }

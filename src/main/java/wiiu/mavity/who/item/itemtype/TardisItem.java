@@ -12,11 +12,7 @@ import wiiu.mavity.who.component.WhoComponents;
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.entitytype.TardisEntity;
 
-import java.util.Random;
-
 public class TardisItem extends Item {
-
-    Random random = new Random();
 
     public TardisItem(Settings settings) {
         super(settings);
