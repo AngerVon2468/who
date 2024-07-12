@@ -8,8 +8,7 @@ import net.minecraft.registry.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +41,8 @@ public class DimensionalUtil {
     public static void createTardisInterior(@NotNull ServerWorld world, int x, int z) {
 
         BlockPos pos = new BlockPos(x - 13, 63 - 14, z - 7);
-        BlockState initialState = world.getBlockState(pos);
+        BlockPos checkStructurePos = new BlockPos(x, 63, z);
+        BlockState initialState = world.getBlockState(checkStructurePos);
         if (initialState.isOf(Blocks.AIR) && !world.isClient()) {
 
             StructurePlacerAPI placer = new StructurePlacerAPI(world, new Identifier(Who.MOD_ID, "tardis_interior_one"), pos);
