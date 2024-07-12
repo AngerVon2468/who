@@ -94,6 +94,13 @@ object WhoBlocks {
         )
     )
 
+    @JvmField
+    val TARDIS_DOOR = registerBlock("tardis_door",
+        TardisDoorBlock(
+            FabricBlockSettings.create().nonOpaque()
+        )
+    )
+
     @JvmStatic
     fun registerWhoBlocks() {
         Who.LOGGER.info(Who.NAME + " has registered its blocks.")

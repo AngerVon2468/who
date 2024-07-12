@@ -1,0 +1,34 @@
+{
+    "variants": {
+        "facing=north,open=false": {
+            "model": "who:block/tardis_door"
+        },
+        "facing=south,open=false": {
+            "model": "who:block/tardis_door",
+            "y": 180
+        },
+        "facing=west,open=false": {
+            "model": "who:block/tardis_door",
+            "y": 270
+        },
+        "facing=east,open=false": {
+            "model": "who:block/tardis_door",
+            "y": 90
+        },
+        "facing=north,open=true": {
+            "model": "who:block/tardis_door_opened"
+        },
+        "facing=south,open=true": {
+            "model": "who:block/tardis_door_opened",
+            "y": 180
+        },
+        "facing=west,open=true": {
+            "model": "who:block/tardis_door_opened",
+            "y": 270
+        },
+        "facing=east,open=true": {
+            "model": "who:block/tardis_door_opened",
+            "y": 90
+        }
+    }
+}
