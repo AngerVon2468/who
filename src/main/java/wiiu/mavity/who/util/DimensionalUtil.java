@@ -9,11 +9,14 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
 
 import wiiu.mavity.who.Who;
+import wiiu.mavity.who.entity.WhoEntities;
+import wiiu.mavity.who.entity.entitytype.TimeRotorEntity;
 
 public class DimensionalUtil {
 
@@ -38,12 +41,16 @@ public class DimensionalUtil {
 
     public static void createTardisInterior(@NotNull ServerWorld world, int x, int z) {
 
-        BlockPos pos = new BlockPos(x, 63, z);
+        BlockPos pos = new BlockPos(x - 13, 63 - 14, z - 7);
         BlockState initialState = world.getBlockState(pos);
         if (initialState.isOf(Blocks.AIR) && !world.isClient()) {
 
             StructurePlacerAPI placer = new StructurePlacerAPI(world, new Identifier(Who.MOD_ID, "tardis_interior_one"), pos);
             placer.loadStructure();
+            Vec3d timeRotorPos = new BlockPos(x, 61, z + 6).toCenterPos();
+            TimeRotorEntity timeRotor = WhoEntities.TIME_ROTOR.create(world);
+            timeRotor.teleport(timeRotorPos.x, timeRotorPos.y - 0.5, timeRotorPos.z);
+            world.spawnEntity(timeRotor);
 
         }
 
