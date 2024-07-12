@@ -13,7 +13,7 @@ import wiiu.mavity.who.util.WhoCommands;
 
 public class Who implements ModInitializer {
 
-	public static final String NAME = "Who";
+	public static final String NAME = "Who?";
 
 	public static final String MOD_ID = "who";
 
@@ -22,7 +22,7 @@ public class Who implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		Who.LOGGER.info("Who has started up!");
+		Who.LOGGER.info(Who.NAME + " has started up!");
 
 		// Registering classes.
 		WhoEntities.registerWhoEntities();
