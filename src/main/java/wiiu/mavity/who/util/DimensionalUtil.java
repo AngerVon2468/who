@@ -2,7 +2,6 @@ package wiiu.mavity.who.util;
 
 import me.emafire003.dev.structureplacerapi.StructurePlacerAPI;
 
-import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.registry.*;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -19,11 +18,11 @@ import wiiu.mavity.who.entity.entitytype.TimeRotorEntity;
 
 public class DimensionalUtil {
 
-    public static void changePlayerEntityDimension(@NotNull ServerPlayerEntity serverPlayer, String modId, String dimensionName) {
+    public static void changePlayerEntityDimension(@NotNull ServerPlayerEntity serverPlayer, String modId, String dimensionName, int x, int z) {
 
         RegistryKey<World> targetDimension = RegistryKey.of(RegistryKeys.WORLD, new Identifier(modId, dimensionName));
         ServerWorld targetServerWorld = serverPlayer.getServer().getWorld(targetDimension);
-        serverPlayer.teleport(targetServerWorld, 0, 100, 0, serverPlayer.getYaw(), serverPlayer.getPitch());
+        serverPlayer.teleport(targetServerWorld, x + 0.5, 100, z + 0.5, serverPlayer.getYaw(), serverPlayer.getPitch());
         Who.LOGGER.info("Changed player dimension.");
 
     }
@@ -41,9 +40,7 @@ public class DimensionalUtil {
     public static void createTardisInterior(@NotNull ServerWorld world, int x, int z) {
 
         BlockPos pos = new BlockPos(x - 13, 63 - 14, z - 7);
-        BlockPos checkStructurePos = new BlockPos(x, 63, z);
-        BlockState initialState = world.getBlockState(checkStructurePos);
-        if (initialState.isOf(Blocks.AIR) && !world.isClient()) {
+        if (!world.isClient()) {
 
             StructurePlacerAPI placer = new StructurePlacerAPI(world, new Identifier(Who.MOD_ID, "tardis_interior_one"), pos);
             placer.loadStructure();
