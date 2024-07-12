@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 public final class WhoComponents implements WorldComponentInitializer {
 
     public static final ComponentKey<WorldTardisId> TARDIS_IDS =
-            ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier("who:tardisIds"), WorldTardisId.class);
+            ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier("who:tardis_ids"), WorldTardisId.class);
 
     @Override
     public void registerWorldComponentFactories(@NotNull WorldComponentFactoryRegistry registry) {
