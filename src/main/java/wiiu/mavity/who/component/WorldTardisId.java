@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
 
-// TODO: https://github.com/Ladysnake/Cardinal-Components-API/tree/1.20
 public class WorldTardisId implements ITardisComponent, AutoSyncedComponent {
 
     public int tardisIds;

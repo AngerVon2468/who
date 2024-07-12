@@ -83,12 +83,13 @@ public class TardisEntity extends Entity {
     public ActionResult interact(@NotNull PlayerEntity player, Hand hand) {
 
         ItemStack stack = player.getStackInHand(hand);
-        if (!world.isClient()) {
+        if (!this.world.isClient()) {
             player.sendMessage(Text.literal("(Tardis Entity) Tardis id: " + this.getTardisId()));
             player.sendMessage(Text.literal("(Tardis Entity) Tardis Owner: " + this.getTardisOwner()));
+            int xy = this.getTardisId() * 100;
             if (player instanceof ServerPlayerEntity serverPlayer && stack.isEmpty()) {
 
-                DimensionalUtil.changePlayerEntityDimensionAndCreateTardisInterior(serverPlayer, Who.MOD_ID, "tardis_dim");
+                DimensionalUtil.changePlayerEntityDimensionAndCreateTardisInterior(serverPlayer, Who.MOD_ID, "tardis_dim", xy, xy);
                 return ActionResult.SUCCESS;
 
             }

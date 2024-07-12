@@ -24,19 +24,19 @@ public class DimensionalUtil {
 
     }
 
-    public static void changePlayerEntityDimensionAndCreateTardisInterior(@NotNull ServerPlayerEntity serverPlayer, String modId, String dimensionName) {
+    public static void changePlayerEntityDimensionAndCreateTardisInterior(@NotNull ServerPlayerEntity serverPlayer, String modId, String dimensionName, int x, int z) {
 
         RegistryKey<World> targetDimension = RegistryKey.of(RegistryKeys.WORLD, new Identifier(modId, dimensionName));
         ServerWorld targetServerWorld = serverPlayer.getServer().getWorld(targetDimension);
-        serverPlayer.teleport(targetServerWorld, 0.5, 64, 0.5, serverPlayer.getYaw(), serverPlayer.getPitch());
-        DimensionalUtil.createTardisInterior(targetServerWorld);
+        serverPlayer.teleport(targetServerWorld, x + 0.5, 64, z + 0.5, serverPlayer.getYaw(), serverPlayer.getPitch());
+        DimensionalUtil.createTardisInterior(targetServerWorld, x, z);
         Who.LOGGER.info("Changed player dimension and created tardis interior.");
 
     }
 
-    public static void createTardisInterior(@NotNull ServerWorld world) {
+    public static void createTardisInterior(@NotNull ServerWorld world, int x, int z) {
 
-        BlockPos initialPos = new BlockPos(0, 63, 0);
+        BlockPos initialPos = new BlockPos(x, 63, z);
         BlockState initialState = world.getBlockState(initialPos);
         if (initialState.isOf(Blocks.AIR)) {
 
