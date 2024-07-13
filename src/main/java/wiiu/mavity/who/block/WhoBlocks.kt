@@ -95,6 +95,13 @@ object WhoBlocks {
     )
 
     @JvmField
+    val TARDIS_CATWALK_STEPS_CORNER_OUTER = registerBlock("tardis_catwalk_steps_corner_outer",
+        TardisCatwalkStepsCornerOuterBlock(
+            FabricBlockSettings.create().nonOpaque()
+        )
+    )
+
+    @JvmField
     val TARDIS_DOOR = registerBlock("tardis_door",
         TardisDoorBlock(
             FabricBlockSettings.create().nonOpaque()

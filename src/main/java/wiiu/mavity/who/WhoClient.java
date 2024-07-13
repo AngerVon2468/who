@@ -30,6 +30,7 @@ public class WhoClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TARDIS_CATWALK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TARDIS_CATWALK_STEPS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TARDIS_CATWALK_STEPS_CORNER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TARDIS_CATWALK_STEPS_CORNER_OUTER, RenderLayer.getCutout());
     }
 
     public static void registerEntityModelLayers() {
