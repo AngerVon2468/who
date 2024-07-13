@@ -29,12 +29,14 @@ public class TardisEntityRenderer extends EntityRenderer<TardisEntity> {
     public void render(@NotNull TardisEntity tardis, float yaw, float tickDelta, @NotNull MatrixStack matrices, @NotNull VertexConsumerProvider vertexConsumers, int light) {
         super.render(tardis, yaw, tickDelta, matrices, vertexConsumers, light);
         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(tardis.getYaw()));
+        matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180f));
+        matrices.translate(0, -1.5, 0);
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.entityModel.getLayer(getTexture(tardis)));
         this.entityModel.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
     }
 
     @Override
     public Identifier getTexture(TardisEntity tardis) {
-        return new Identifier(Who.MOD_ID, "textures/entity/tardis_base.png");
+        return new Identifier(Who.MOD_ID, "textures/entity/tardis_main.png");
     }
 }

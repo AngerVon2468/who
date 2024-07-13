@@ -15,7 +15,7 @@ public class WhoEntities {
             Registries.ENTITY_TYPE,
             new Identifier(Who.MOD_ID, "tardis"),
             FabricEntityTypeBuilder.create(SpawnGroup.MISC, TardisEntity::new)
-                    .dimensions(EntityDimensions.fixed(1.5f,3.2f))
+                    .dimensions(EntityDimensions.fixed(1.5f,2.8f))
                     .fireImmune()
                     .build()
     );

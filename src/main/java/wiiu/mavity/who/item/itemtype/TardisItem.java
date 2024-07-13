@@ -35,25 +35,28 @@ public class TardisItem extends Item {
             if (player.getHorizontalFacing() == Direction.NORTH) {
 
                 tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() - 1);
+                tardisEntity.setYaw(180);
 
             } else if (player.getHorizontalFacing() == Direction.SOUTH) {
 
                 tardisEntity.setPosition(player.getX(), player.getY(), player.getZ() + 1);
+                tardisEntity.setYaw(0);
 
             } else if (player.getHorizontalFacing() == Direction.EAST) {
 
                 tardisEntity.setPosition(player.getX() + 1, player.getY(), player.getZ());
+                tardisEntity.setYaw(-90);
 
             } else if (player.getHorizontalFacing() == Direction.WEST) {
 
                 tardisEntity.setPosition(player.getX() - 1, player.getY(), player.getZ());
+                tardisEntity.setYaw(90);
 
             }
             int newValue = WhoComponents.TARDIS_IDS.get(world).getTardisIds() + 1;
             tardisEntity.setTardisId(newValue);
             WhoComponents.TARDIS_IDS.get(world).setTardisIds(newValue);
             tardisEntity.setTardisOwner(player.getEntityName());
-            tardisEntity.setYaw(-player.getHeadYaw());
             world.spawnEntity(tardisEntity);
             if (!player.isCreative()) {
 
