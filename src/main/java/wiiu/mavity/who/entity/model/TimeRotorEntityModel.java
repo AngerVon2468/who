@@ -1,5 +1,7 @@
 package wiiu.mavity.who.entity.model;
 
+import net.fabricmc.api.*;
+
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.*;
@@ -12,9 +14,10 @@ import wiiu.mavity.who.Who;
 import wiiu.mavity.who.entity.entitytype.TimeRotorEntity;
 
 /**
- * {@link DalekBeamEntityModel<T>}<br>
+ * {@link TimeRotorEntityModel<T>}<br>
  * This link is to avoid a stupid warning that I can't be stuffed to remove.
  */
+@Environment(EnvType.CLIENT)
 public class TimeRotorEntityModel<T extends TimeRotorEntity> extends EntityModel<TimeRotorEntity> {
 
 	public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new Identifier(Who.MOD_ID, "time_rotor"), "main");
