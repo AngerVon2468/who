@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 import org.jetbrains.annotations.NotNull;
 
-public class WorldTardisId implements ITardisComponent, AutoSyncedComponent {
+public class WorldTardisIds implements ITardisComponent, AutoSyncedComponent {
 
     public int tardisIds;
 
@@ -39,7 +39,7 @@ public class WorldTardisId implements ITardisComponent, AutoSyncedComponent {
         nbt.putInt("tardisIds", this.tardisIds);
     }
 
-    public WorldTardisId(int tardisIds, World world) {
+    public WorldTardisIds(int tardisIds, World world) {
 
         this.tardisIds = tardisIds;
         this.world = world;
