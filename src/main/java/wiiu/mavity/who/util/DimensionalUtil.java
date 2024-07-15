@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import wiiu.mavity.who.Who;
+import wiiu.mavity.who.component.WhoComponents;
 import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.entitytype.TimeRotorEntity;
 
@@ -20,8 +21,10 @@ public class DimensionalUtil {
 
     public static void changePlayerEntityDimension(@NotNull ServerPlayerEntity serverPlayer, String modId, String dimensionName, int x, int z) {
 
+        int value = WhoComponents.TARDIS_IDS.get(serverPlayer.getWorld()).getTardisIds();
         RegistryKey<World> targetDimension = RegistryKey.of(RegistryKeys.WORLD, new Identifier(modId, dimensionName));
         ServerWorld targetServerWorld = serverPlayer.getServer().getWorld(targetDimension);
+        WhoComponents.TARDIS_IDS.get(targetDimension).setTardisIds(value);
         serverPlayer.teleport(targetServerWorld, x + 0.5, 64, z + 0.5, serverPlayer.getYaw(), serverPlayer.getPitch());
         Who.LOGGER.info("Changed player dimension.");
 
@@ -29,8 +32,10 @@ public class DimensionalUtil {
 
     public static void changePlayerEntityDimensionAndCreateTardisInterior(@NotNull ServerPlayerEntity serverPlayer, String modId, String dimensionName, int x, int z) {
 
+        int value = WhoComponents.TARDIS_IDS.get(serverPlayer.getWorld()).getTardisIds();
         RegistryKey<World> targetDimension = RegistryKey.of(RegistryKeys.WORLD, new Identifier(modId, dimensionName));
         ServerWorld targetServerWorld = serverPlayer.getServer().getWorld(targetDimension);
+        WhoComponents.TARDIS_IDS.get(targetDimension).setTardisIds(value);
         serverPlayer.teleport(targetServerWorld, x + 0.5, 64, z + 0.5, serverPlayer.getYaw(), serverPlayer.getPitch());
         DimensionalUtil.createTardisInterior(targetServerWorld, x, z);
         Who.LOGGER.info("Changed player dimension and created tardis interior.");
