@@ -43,6 +43,9 @@
 		"fabric-api": "*",
 		"fabric-language-kotlin": "*"
 	},
+	"recommends": {
+		"moremcmeta_emissive_plugin": "*"
+	},
 	"custom": {
 		"cardinal-components": [
 			"who:tardis_ids"
