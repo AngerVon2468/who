@@ -11,7 +11,7 @@ import wiiu.mavity.who.Who
 /**
  * Loads resourcepacks from the folder ```resources/resourcepacks``` folder.
  *
- * Add new packs to the list by duplicating
+ * Add new packs to the list by duplicating the ```packName```, ```identifier```. and ```success``` values, then changing the names and locations as needed.
  */
 object ModResourcePack {
 
