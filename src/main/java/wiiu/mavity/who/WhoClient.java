@@ -15,6 +15,7 @@ import wiiu.mavity.who.entity.WhoEntities;
 import wiiu.mavity.who.entity.model.*;
 import wiiu.mavity.who.entity.renderer.*;
 import wiiu.mavity.who.item.WhoItems;
+import wiiu.mavity.who.resourcepack.ModResourcePack;
 
 public class WhoClient implements ClientModInitializer {
 
@@ -25,6 +26,7 @@ public class WhoClient implements ClientModInitializer {
         WhoClient.registerEntityModelLayers();
         WhoClient.registerEntityRenderers();
         WhoClient.registerCustomModelPredicateProviders();
+        ModResourcePack.registerResourcePack();
 
         BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TIME_ROTOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(WhoBlocks.TARDIS_CATWALK, RenderLayer.getCutout());
